@@ -37,7 +37,8 @@ WIFI_COUNTRY_CODE=config['WifiCountryCode']
 MOTION_RECORDING_TIMEOUT=config['MotionRecordingTimeout']
 AUDIO_RECORDING_TIMEOUT=config['AudioRecordingTimeout']
 RECORDING_BASE_PATH=config['RecordingBasePath']
-RECORD_ON_MOTION_ALERT=config['RecordOnMotionAlert']
+RECORD_AND_NOTIFY_ON_MOTION_ALERT=config['RecordAndNotifyOnMotionAlert']
+ONLY_NOTIFY_ON_MOTION_ALERT=config['OnlyNotifyOnMotionAlert']
 RECORD_ON_AUDIO_ALERT=config['RecordOnAudioAlert']
 
 class ConnectionThread(threading.Thread):
@@ -66,6 +67,8 @@ class ConnectionThread(threading.Thread):
                         registerSet = Message(arlo.messages.REGISTER_SET_INITIAL)
                     registerSet['WifiCountryCode'] = WIFI_COUNTRY_CODE
                     camera.send_message(registerSet)
+                    camera.set_quality({'quality':'subscription'})
+                    camera.arm({"PIRTargetState":"Armed","VideoMotionEstimationEnable":False,"AudioTargetState":"Disarmed"});
                 elif (msg['Type'] == "status"):
                     s_print(f"<[{self.ip}][{msg['ID']}] Status from {msg['SystemSerialNumber']}")
                     camera = Camera.from_db_serial(msg['SystemSerialNumber'])
@@ -76,7 +79,7 @@ class ConnectionThread(threading.Thread):
                     camera = Camera.from_db_ip(self.ip)
                     alert_type = msg['AlertType']
                     s_print(f"<[{self.ip}][{msg['ID']}] {msg['AlertType']}")
-                    if alert_type == "pirMotionAlert" and RECORD_ON_MOTION_ALERT:
+                    if alert_type == "pirMotionAlert" and RECORD_AND_NOTIFY_ON_MOTION_ALERT and not ONLY_NOTIFY_ON_MOTION_ALERT:
                        filename = f"{RECORDING_BASE_PATH}{camera.serial_number}_{timestr}_motion.mpg"
                        recorder = Recorder(self.ip, filename, MOTION_RECORDING_TIMEOUT)
                        with recorder_lock:
@@ -85,6 +88,8 @@ class ConnectionThread(threading.Thread):
                            recorders[self.ip] = recorder
                        recorder.run()
                        webhook_manager.motion_detected(camera.ip,camera.friendly_name,camera.hostname,camera.serial_number,msg['PIRMotion']['zones'],filename)
+                    if alert_type == "pirMotionAlert" and ONLY_NOTIFY_ON_MOTION_ALERT and not RECORD_AND_NOTIFY_ON_MOTION_ALERT:
+                       webhook_manager.motion_detected(camera.ip,camera.friendly_name,camera.hostname,camera.serial_number,msg['PIRMotion']['zones'],"")
                     elif alert_type == "audioAlert" and RECORD_ON_AUDIO_ALERT:
                        recorder = Recorder(self.ip, f"{RECORDING_BASE_PATH}{camera.serial_number}_{timestr}_audio.mpg", AUDIO_RECORDING_TIMEOUT)
                        with recorder_lock:

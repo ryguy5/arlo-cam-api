@@ -1,11 +1,12 @@
-WifiCountryCode: "EU"
+WifiCountryCode: "US"
 MotionRecordingTimeout: 120
 AudioRecordingTimeout: 10
-RecordOnMotionAlert: false
+RecordAndNotifyOnMotionAlert: false
+OnlyNotifyOnMotionAlert: true
 RecordOnAudioAlert: false
 RecordingBasePath: "/tmp/"
-MotionRecordingWebHookUrl: "http://httpbin.org/anything"
+MotionRecordingWebHookUrl: "http://192.168.1.72:11080/endpoint/47/public/"
 AudioRecordingWebHookUrl: "http://httpbin.org/anything"
-UserRecordingWebHookUrl: "http://httpbin.org/anything"
+UserRecordingWebHookUrl: "http://192.168.1.72:11080/endpoint/47/public/"
 StatusUpdateWebHookUrl: "http://httpbin.org/anything"
 RegistrationWebHookUrl: "http://httpbin.org/anything"
