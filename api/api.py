@@ -1,16 +1,15 @@
 import flask
 import threading
 import sqlite3
-import json
 import functools
 import os
 from arlo.camera import Camera
-from arlo.messages import Message
-from flask import g
+from flask import g, send_from_directory
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
-app.use_reloader=False
+app.use_reloader = False
+
 
 def validate_camera_request(body_required=True):
     def decorator(f):
@@ -25,13 +24,15 @@ def validate_camera_request(body_required=True):
                 if g.args is None:
                     flask.abort(400)
 
-            return f(*args,**kwargs)
+            return f(*args, **kwargs)
         return wrapper
     return decorator
+
 
 @app.route('/', methods=['GET'])
 def home():
     return "PING"
+
 
 @app.route('/camera', methods=['GET'])
 def list():
@@ -42,10 +43,13 @@ def list():
         cameras = []
         if rows is not None:
             for row in rows:
-                (ip,serial_number,hostname,registration,status,friendly_name) = row
-                cameras.append({"ip":ip,"hostname":hostname,"serial_number":serial_number,"friendly_name":friendly_name})
+                (ip, serial_number, hostname,
+                 registration, status, friendly_name) = row
+                cameras.append({"ip": ip, "hostname": hostname,
+                               "serial_number": serial_number, "friendly_name": friendly_name})
 
         return flask.jsonify(cameras)
+
 
 @app.route('/camera/<serial>', methods=['GET'])
 @validate_camera_request(body_required=False)
@@ -55,6 +59,7 @@ def status(serial):
     else:
         return flask.jsonify(g.camera.status.dictionary)
 
+
 @app.route('/camera/<serial>/registration', methods=['GET'])
 @validate_camera_request(body_required=False)
 def registration(serial):
@@ -63,11 +68,13 @@ def registration(serial):
     else:
         return flask.jsonify(g.camera.registration.dictionary)
 
+
 @app.route('/camera/<serial>/statusrequest', methods=['POST'])
 @validate_camera_request(body_required=False)
 def status_request(serial):
     result = g.camera.status_request()
-    return flask.jsonify({"result":result})
+    return flask.jsonify({"result": result})
+
 
 @app.route('/camera/<serial>/userstreamactive', methods=['POST'])
 @validate_camera_request()
@@ -77,19 +84,22 @@ def user_stream_active(serial):
         flask.abort(400)
 
     result = g.camera.set_user_stream_active(int(active))
-    return flask.jsonify({"result":result})
+    return flask.jsonify({"result": result})
+
 
 @app.route('/camera/<serial>/arm', methods=['POST'])
 @validate_camera_request()
 def arm(serial):
     result = g.camera.arm(g.args)
-    return flask.jsonify({"result":result})
+    return flask.jsonify({"result": result})
+
 
 @app.route('/camera/<serial>/pirled', methods=['POST'])
 @validate_camera_request()
 def pir_led(serial):
     result = g.camera.pir_led(g.args)
-    return flask.jsonify({"result":result})
+    return flask.jsonify({"result": result})
+
 
 @app.route('/camera/<serial>/quality', methods=['POST'])
 @validate_camera_request()
@@ -98,7 +108,8 @@ def set_quality(serial):
         flask.abort(400)
     else:
         result = g.camera.set_quality(g.args)
-        return flask.jsonify({"result":result})
+        return flask.jsonify({"result": result})
+
 
 @app.route('/camera/<serial>/snapshot', methods=['POST'])
 @validate_camera_request()
@@ -107,7 +118,8 @@ def request_snapshot(serial):
         flask.abort(400)
     else:
         result = g.camera.snapshot_request(g.args['url'])
-        return flask.jsonify({"result":result})
+        return flask.jsonify({"result": result})
+
 
 @app.route('/camera/<serial>/audiomic', methods=['POST'])
 @validate_camera_request()
@@ -116,7 +128,8 @@ def request_mic(serial):
         flask.abort(400)
     else:
         result = g.camera.mic_request(g.args['enabled'])
-        return flask.jsonify({"result":result})
+        return flask.jsonify({"result": result})
+
 
 @app.route('/camera/<serial>/audiospeaker', methods=['POST'])
 @validate_camera_request()
@@ -125,7 +138,8 @@ def request_speaker(serial):
         flask.abort(400)
     else:
         result = g.camera.speaker_request(g.args['enabled'])
-        return flask.jsonify({"result":result})
+        return flask.jsonify({"result": result})
+
 
 @app.route('/camera/<serial>/record', methods=['POST'])
 @validate_camera_request()
@@ -134,7 +148,8 @@ def request_record(serial):
         flask.abort(400)
     else:
         result = g.camera.record(g.args['duration'], g.args['is4k'])
-        return flask.jsonify({"result":result})
+        return flask.jsonify({"result": result})
+
 
 @app.route('/camera/<serial>/friendlyname', methods=['POST'])
 @validate_camera_request()
@@ -145,9 +160,10 @@ def set_friendlyname(serial):
         g.camera.friendly_name = g.args['name']
         g.camera.persist()
 
-        return flask.jsonify({"result":True})
+        return flask.jsonify({"result": True})
 
-@app.route('/camera/<serial>/activityzones', methods=['POST','DELETE'])
+
+@app.route('/camera/<serial>/activityzones', methods=['POST', 'DELETE'])
 @validate_camera_request()
 def set_activity_zones(serial):
     if flask.request.method == 'DELETE':
@@ -155,7 +171,8 @@ def set_activity_zones(serial):
     else:
         result = g.camera.set_activity_zones(g.args)
 
-    return flask.jsonify({"result":result})
+    return flask.jsonify({"result": result})
+
 
 @app.route('/snapshot/<identifier>/', methods=['POST'])
 def receive_snapshot(identifier):
@@ -163,17 +180,28 @@ def receive_snapshot(identifier):
         flask.abort(400)
     else:
         file = flask.request.files['file']
-        if file.filename=='':
+        if file.filename == '':
             flask.abort(400)
         else:
             start_path = os.path.abspath('/tmp')
-            target_path = os.path.join(start_path,f"{identifier}.jpg")
+            target_path = os.path.join(start_path, f"{identifier}.jpg")
             common_prefix = os.path.commonprefix([target_path, start_path])
             if (common_prefix != start_path):
                 flask.abort(400)
             else:
                 file.save(target_path)
             return ""
+
+
+@app.route('/snapshot/<identifier>/', methods=['GET'])
+def get_snapshot(identifier):
+    start_path = os.path.abspath('/tmp')
+    target_path = os.path.join(start_path, f"{identifier}.jpg")
+    common_prefix = os.path.commonprefix([target_path, start_path])
+    if (common_prefix != start_path or not os.path.isfile(target_path)):
+        flask.abort(400)
+    else:
+        return send_from_directory(start_path, filename=f"{identifier}.jpg")
 
 
 def get_thread():
