@@ -193,7 +193,7 @@ def receive_snapshot(identifier):
             return ""
 
 
-@app.route('/snapshot/<identifier>/', methods=['GET'])
+@app.route('/snapshot/<identifier>', methods=['GET'])
 def get_snapshot(identifier):
     start_path = os.path.abspath('/tmp')
     target_path = os.path.join(start_path, f"{identifier}.jpg")
