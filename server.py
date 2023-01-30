@@ -75,6 +75,7 @@ class ConnectionThread(threading.Thread):
                     camera.ip = self.ip
                     camera.status = msg
                     camera.persist()
+                    webhook_manager.status_received(camera.ip,camera.friendly_name,camera.hostname,camera.serial_number,camera.status)
                 elif (msg['Type'] == "alert"):
                     camera = Camera.from_db_ip(self.ip)
                     alert_type = msg['AlertType']
