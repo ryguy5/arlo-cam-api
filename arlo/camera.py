@@ -1,8 +1,8 @@
-import json
 import socket
 import sqlite3
 import time
 import sys
+import copy 
 
 from arlo.messages import Message
 from arlo.socket import ArloSocket
@@ -63,7 +63,7 @@ class Camera:
             conn.commit()
 
     def pir_led(self,args):
-        register_set = Message(arlo.messages.REGISTER_SET)
+        register_set = Message(copy.deepcopy(arlo.messages.REGISTER_SET))
         enabled = args['enabled']
         sensitivity = args['sensitivity']
 
@@ -75,28 +75,28 @@ class Camera:
         return self.send_message(register_set)
 
     def set_activity_zones(self,args):
-        activity_zones = Message(arlo.messages.ACTIVITY_ZONE_ALL)
+        activity_zones = Message(copy.deepcopy(arlo.messages.ACTIVITY_ZONE_ALL))
         # TODO:Set The Co-ordinates  
         return self.send_message(activity_zones)
 
     def unset_activity_zones(self,args):
-        activity_zones = Message(arlo.messages.ACTIVITY_ZONE_DELETE)
+        activity_zones = Message(copy.deepcopy(arlo.messages.ACTIVITY_ZONE_DELETE))
         return self.send_message(activity_zones)
 
     def set_quality(self,args):
         quality = args["quality"].lower()
         if quality == "low":
-            ra_params = Message(arlo.messages.RA_PARAMS_LOW_QUALITY)
-            registerSet = Message(arlo.messages.REGISTER_SET_LOW_QUALITY)
+            ra_params = Message(copy.deepcopy(arlo.messages.RA_PARAMS_LOW_QUALITY))
+            registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_LOW_QUALITY))
         elif quality == "medium":
-            ra_params = Message(arlo.messages.RA_PARAMS_MEDIUM_QUALITY)
-            registerSet = Message(arlo.messages.REGISTER_SET_MEDIUM_QUALITY)
+            ra_params = Message(copy.deepcopy(arlo.messages.RA_PARAMS_MEDIUM_QUALITY))
+            registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_MEDIUM_QUALITY))
         elif quality == "high":
-            ra_params = Message(arlo.messages.RA_PARAMS_HIGH_QUALITY)
-            registerSet = Message(arlo.messages.REGISTER_SET_HIGH_QUALITY)
+            ra_params = Message(copy.deepcopy(arlo.messages.RA_PARAMS_HIGH_QUALITY))
+            registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_HIGH_QUALITY))
         elif quality == "subscription":
-            ra_params = Message(arlo.messages.RA_PARAMS_SUBSCRIPTION_QUALITY)
-            registerSet = Message(arlo.messages.REGISTER_SET_SUBSCRIPTION_QUALITY)
+            ra_params = Message(copy.deepcopy(arlo.messages.RA_PARAMS_SUBSCRIPTION_QUALITY))
+            registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_SUBSCRIPTION_QUALITY))
         else:
             return False
 
@@ -104,7 +104,7 @@ class Camera:
 
 
     def arm(self,args):
-        register_set = Message(arlo.messages.REGISTER_SET)
+        register_set = Message(copy.deepcopy(arlo.messages.REGISTER_SET))
         pir_target_state = args['PIRTargetState']
         video_motion_estimation_enable = args['VideoMotionEstimationEnable']
         audio_target_state = args['AudioTargetState']
@@ -122,26 +122,26 @@ class Camera:
         return self.send_message(register_set)
 
     def set_user_stream_active(self,active):
-        register_set = Message(arlo.messages.REGISTER_SET)
+        register_set = Message(copy.deepcopy(arlo.messages.REGISTER_SET))
         register_set['SetValues']['UserStreamActive'] = int(active)
         return self.send_message(register_set)
 
     def status_request(self):
-        _status_request = Message(arlo.messages.STATUS_REQUEST)
+        _status_request = Message(copy.deepcopy(arlo.messages.STATUS_REQUEST))
         return self.send_message(_status_request)
 
     def snapshot_request(self, url):
-        _snapshot_request = Message(arlo.messages.SNAPSHOT)
+        _snapshot_request = Message(copy.deepcopy(arlo.messages.SNAPSHOT))
         _snapshot_request['DestinationURL'] = url
         return self.send_message(_snapshot_request)
 
     def mic_request(self, enabled):
-        register_set = Message(arlo.messages.REGISTER_SET)
+        register_set = Message(copy.deepcopy(arlo.messages.REGISTER_SET))
         register_set['AudioMicEnable'] = enabled
         return self.send_message(register_set)
 
     def speaker_request(self, enabled):
-        register_set = Message(arlo.messages.REGISTER_SET)
+        register_set = Message(copy.deepcopy(arlo.messages.REGISTER_SET))
         register_set['AudioSpkrEnable'] = enabled
         return self.send_message(register_set)
 

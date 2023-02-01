@@ -1,10 +1,9 @@
 import socket
-import sys
-import json
 import threading
 import sqlite3
 import time
 import yaml
+import copy
 
 from arlo.messages import Message
 from arlo.socket import ArloSocket
@@ -62,9 +61,9 @@ class ConnectionThread(threading.Thread):
                     camera.persist()
                     s_print(f"<[{self.ip}][{msg['ID']}] Registration from {msg['SystemSerialNumber']} - {camera.hostname}")
                     if msg['SystemModelNumber'] ==  'VMC5040':
-                        registerSet = Message(arlo.messages.REGISTER_SET_INITIAL_ULTRA)
+                        registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INITIAL_ULTRA))
                     else:
-                        registerSet = Message(arlo.messages.REGISTER_SET_INITIAL)
+                        registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INITIAL))
                     registerSet['WifiCountryCode'] = WIFI_COUNTRY_CODE
                     camera.send_message(registerSet)
                     camera.set_quality({'quality':'subscription'})
@@ -107,7 +106,7 @@ class ConnectionThread(threading.Thread):
                     s_print(f"<[{self.ip}][{msg['ID']}] Unknown message")
                     s_print(msg)
 
-                ack = Message(arlo.messages.RESPONSE)
+                ack = Message(copy.deepcopy(arlo.messages.RESPONSE))
                 ack['ID'] = msg['ID']
                 s_print(f">[{self.ip}][{msg['ID']}] Ack")
                 self.connection.send(ack)
