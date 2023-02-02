@@ -1,5 +1,7 @@
+import functools
 import socket
 import sqlite3
+import threading
 import time
 import sys
 import copy 
@@ -11,6 +13,15 @@ from helpers.safe_print import s_print
 from helpers.recorder import Recorder
 
 class Camera:
+    sqliteLock = threading.Lock()
+
+    def synchronized(wrapped):
+        @functools.wraps(wrapped)
+        def _wrapper(*args, **kwargs):
+            with Camera.sqliteLock:
+                return wrapped(*args, **kwargs)
+        return _wrapper
+
     def __init__(self, ip, registration):
         self.registration = registration
         self.ip = ip
@@ -54,6 +65,7 @@ class Camera:
             finally:
                 return result
 
+    @synchronized
     def persist(self):
         with sqlite3.connect('arlo.db') as conn:
             c = conn.cursor()
@@ -159,6 +171,7 @@ class Camera:
         return path
 
     @staticmethod
+    @synchronized
     def from_db_serial(serial):
         with sqlite3.connect('arlo.db') as conn:
             c = conn.cursor()
@@ -167,6 +180,7 @@ class Camera:
             return Camera.from_db_row(result)
 
     @staticmethod
+    @synchronized
     def from_db_ip(ip):
         with sqlite3.connect('arlo.db') as conn:
             c = conn.cursor()
