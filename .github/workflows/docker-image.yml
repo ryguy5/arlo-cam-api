@@ -7,19 +7,16 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
+      - name: Docker Hub Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
     - uses: actions/checkout@v3
-    - name: docker login
-      env:
-        DOCKER_USER: ${{ env.DOCKER_USER }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ env.DOCKER_USER }}/arlo-cam-api:$(date +%s)
+    - name: Build Docker Image
+      run: docker build . --file Dockerfile --tag bschrameck/arlo-cam-api:$(date +%s)
     - name: Docker Push
-      run: docker push ${{ env.DOCKER_USER }}/arlo-cam-api
+      run: docker push bschrameck/arlo-cam-api
