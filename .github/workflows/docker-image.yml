@@ -16,6 +16,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - uses: actions/checkout@v3
       - name: Build Docker Image
-        run: docker build . --file Dockerfile --tag bschrameck/arlo-cam-api:$(date +%s)
+        run: docker build . --file Dockerfile --tag bschrameck/arlo-cam-api:$(date +%s) --tag bschrameck/arlo-cam-api:latest
       - name: Docker Push
-        run: docker push bschrameck/arlo-cam-api
+        run: docker push --all-tags bschrameck/arlo-cam-api
