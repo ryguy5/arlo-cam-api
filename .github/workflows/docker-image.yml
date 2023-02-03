@@ -24,10 +24,3 @@ jobs:
       - 
         name: Docker Push
         run: docker push --all-tags bschrameck/arlo-cam-api
-      -
-        name: Update Docker Hub Description
-        uses: peter-evans/dockerhub-description@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: bschrameck/arlo-cam-api
