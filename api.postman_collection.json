@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/camera",
+					"raw": "{{base_url}}/device",
 					"host": [
 						"{{base_url}}"
 					],
@@ -28,7 +28,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/statusrequest",
+					"raw": "{{base_url}}/device/{{serial_number}}/statusrequest",
 					"host": [
 						"{{base_url}}"
 					],
@@ -47,7 +47,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/statusrequest",
+					"raw": "{{base_url}}/device/{{serial_number}}/statusrequest",
 					"host": [
 						"{{base_url}}"
 					],
@@ -67,7 +67,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}",
+					"raw": "{{base_url}}/device/{{serial_number}}",
 					"host": [
 						"{{base_url}}"
 					],
@@ -85,7 +85,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/registration",
+					"raw": "{{base_url}}/device/{{serial_number}}/registration",
 					"host": [
 						"{{base_url}}"
 					],
@@ -113,7 +113,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/userstreamactive",
+					"raw": "{{base_url}}/device/{{serial_number}}/userstreamactive",
 					"host": [
 						"{{base_url}}"
 					],
@@ -142,7 +142,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/audiomic",
+					"raw": "{{base_url}}/device/{{serial_number}}/audiomic",
 					"host": [
 						"{{base_url}}"
 					],
@@ -171,7 +171,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/audiospeaker",
+					"raw": "{{base_url}}/device/{{serial_number}}/audiospeaker",
 					"host": [
 						"{{base_url}}"
 					],
@@ -200,7 +200,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/arm",
+					"raw": "{{base_url}}/device/{{serial_number}}/arm",
 					"host": [
 						"{{base_url}}"
 					],
@@ -229,7 +229,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/pirled",
+					"raw": "{{base_url}}/device/{{serial_number}}/pirled",
 					"host": [
 						"{{base_url}}"
 					],
@@ -258,7 +258,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/quality",
+					"raw": "{{base_url}}/device/{{serial_number}}/quality",
 					"host": [
 						"{{base_url}}"
 					],
@@ -287,7 +287,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/activityzones",
+					"raw": "{{base_url}}/device/{{serial_number}}/activityzones",
 					"host": [
 						"{{base_url}}"
 					],
@@ -316,7 +316,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/activityzones",
+					"raw": "{{base_url}}/device/{{serial_number}}/activityzones",
 					"host": [
 						"{{base_url}}"
 					],
@@ -345,7 +345,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/snapshot",
+					"raw": "{{base_url}}/device/{{serial_number}}/snapshot",
 					"host": [
 						"{{base_url}}"
 					],
@@ -373,7 +373,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/camera/{{serial_number}}/record",
+					"raw": "{{base_url}}/device/{{serial_number}}/record",
 					"host": [
 						"{{base_url}}"
 					],
