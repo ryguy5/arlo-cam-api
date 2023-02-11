@@ -357,34 +357,6 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "Camera Request Record",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"duration\":10,\"is4k\":false}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/device/{{serial_number}}/record",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"camera",
-						"{{serial_number}}",
-						"record"
-					]
-				}
-			},
-			"response": []
 		}
 	],
 	"event": [

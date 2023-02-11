@@ -1,10 +1,7 @@
 WifiCountryCode: "US"
-MotionRecordingTimeout: 120
-AudioRecordingTimeout: 10
 NotifyOnMotionAlert: true
 NotifyOnAudioAlert: false
 NotifyOnButtonPressAlert: true
-RecordingBasePath: "/tmp/"
 MotionRecordingWebHookUrl: "http://192.168.1.72:11080/endpoint/@scrypted/arlo-local/public/motionDetected"
 AudioRecordingWebHookUrl: "http://192.168.1.72:11080/endpoint/@scrypted/arlo-local/public/"
 UserRecordingWebHookUrl: "http://192.168.1.72:11080/endpoint/@scrypted/arlo-local/public/"

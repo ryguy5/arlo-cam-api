@@ -3,7 +3,6 @@ import copy
 
 from arlo.messages import Message
 import arlo.messages
-from helpers.recorder import Recorder
 from arlo.device import Device
 
 DEVICE_PREFIXES = [
@@ -26,7 +25,7 @@ class Camera(Device):
         registerSet['WifiCountryCode'] = wifi_country_code
         self.send_message(registerSet)
         self.set_quality({'quality': 'subscription'})
-        self.arm({"PIRTargetState":"Armed"});
+        self.arm({"PIRTargetState": "Armed"})
 
     def pir_led(self, args):
         register_set = Message(copy.deepcopy(arlo.messages.REGISTER_SET))
@@ -98,17 +97,3 @@ class Camera(Device):
         _snapshot_request = Message(copy.deepcopy(arlo.messages.SNAPSHOT))
         _snapshot_request['DestinationURL'] = url
         return self.send_message(_snapshot_request)
-
-    def record(self, duration, is4k):
-        # Cameras tend to be unresponsive so send a status request to wake up
-        self.status_request()
-        time.sleep(0.1)
-        timestr = time.strftime("%Y%m%d-%H%M%S")
-        path = f"/tmp/{self.serial_number}{timestr}-user.mpg", duration
-        if is4k:
-            addr = f'{self.ip}:555'
-        else:
-            addr = f'{self.ip}:554'
-        recorder = Recorder(addr, path, duration)
-        recorder.run()
-        return path

@@ -10,7 +10,6 @@ from arlo.messages import Message
 from arlo.socket import ArloSocket
 import arlo.messages
 from helpers.safe_print import s_print
-from helpers.recorder import Recorder
 from helpers.webhook_manager import WebHookManager
 import api.api
 from arlo.device_db import DeviceDB
@@ -38,14 +37,8 @@ with sqlite3.connect('arlo.db') as conn:
     c.execute("CREATE UNIQUE INDEX IF NOT EXISTS idx_device_hostname ON devices (hostname)")
     conn.commit()
 
-recorder_lock = threading.Lock()
-recorders = {}
-
 
 WIFI_COUNTRY_CODE = config['WifiCountryCode']
-MOTION_RECORDING_TIMEOUT = config['MotionRecordingTimeout']
-AUDIO_RECORDING_TIMEOUT = config['AudioRecordingTimeout']
-RECORDING_BASE_PATH = config['RecordingBasePath']
 NOTIFY_ON_MOTION_ALERT = config['NotifyOnMotionAlert']
 NOTIFY_ON_AUDIO_ALERT = config['NotifyOnAudioAlert']
 NOTIFY_ON_BUTTON_PRESS_ALERT = config['NotifyOnButtonPressAlert']

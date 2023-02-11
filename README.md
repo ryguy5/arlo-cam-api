@@ -2,13 +2,11 @@
 
 This project forks [Meatballs1/arlo-cam-api](https://github.com/Meatballs1/arlo-cam-api) which simulates the Arlo Basestation to communicate with cameras.
 
-Based on reconstructing the communication between a VMB4000r3 and Arlo Pro 2 cameras.
+Based on reconstructing the communication between a VMB4000r3, Arlo Pro 2 cameras (VMC4030P), and Arlo Audio Doorbells.
 
-It won't work with the mobile app, and there is no real plan to support this at present. However,
-it does allow you to use your Arlo cameras as normal RTSP camera sources for other media recorders.
+It won't work with the mobile app, and there is no real plan to support this at present. However, it does allow you to use your Arlo cameras as normal RTSP camera sources for other media recorders, and your Audio Doorbell as a Wi-Fi motion and binary sensor.
 
-We can either emulate the basestation using the same SSID and capture and re-use the WPA-PSK to make 
-the cameras connect to us. Or we can try and use WPS to get the cameras to sync to our own basestation.
+We can either emulate the basestation using the same SSID and capture and re-use the WPA-PSK to make the cameras connect to us. Or we can try and use WPS to get the cameras to sync to our own basestation.
 
 
 ## API Configuration
@@ -17,25 +15,28 @@ First, create a `config.yaml` file (available in this repo) that will be used to
 
 ```
 WifiCountryCode: "US"
-MotionRecordingTimeout: 120
-AudioRecordingTimeout: 10
-RecordAndNotifyOnMotionAlert: false
-OnlyNotifyOnMotionAlert: true
-RecordOnAudioAlert: false
-RecordingBasePath: "/tmp/"
-MotionRecordingWebHookUrl: "http://httpbin.org/anything"
-AudioRecordingWebHookUrl: "http://httpbin.org/anything"
-UserRecordingWebHookUrl: "http://httpbin.org/anything"
-StatusUpdateWebHookUrl: "http://httpbin.org/anything"
-RegistrationWebHookUrl: "http://httpbin.org/anything"
+NotifyOnMotionAlert: true
+NotifyOnAudioAlert: false
+NotifyOnButtonPressAlert: true
+MotionRecordingWebHookUrl: "http://192.168.1.100:4321/endpoint/@scrypted/arlo-local/public/motionDetected"
+AudioRecordingWebHookUrl: "http://192.168.1.100:4321/endpoint/@scrypted/arlo-local/public/"
+UserRecordingWebHookUrl: "http://192.168.1.100:4321/endpoint/@scrypted/arlo-local/public/"
+StatusUpdateWebHookUrl: "http://192.168.1.100:4321/endpoint/@scrypted/arlo-local/public/statusUpdated"
+RegistrationWebHookUrl: "http://192.168.1.100:4321/endpoint/@scrypted/arlo-local/public/registered"
+ButtonPressWebHookUrl: "http://192.168.1.100:4321/endpoint/@scrypted/arlo-local/public/buttonPressed"
 ```
 
-You'll want to replace the `WifiCountryCode`. If you want to use webhooks, currently only the `MotionRecording` webhook and the `StatusUpdate` webhook are functional.
+You'll want to replace the `WifiCountryCode`. If you want to use webhooks, currently only the following webhooks are functional:
+- `RegistrationWebHookUrl`
+- `StatusUpdateWebHookUrl`
+- `MotionRecordingWebHookUrl`
+- `ButtonPressWebHookUrl`
 
-If you are using thie server with Scrypted:
-
+If you are using this server with Scrypted:
+- Replace `RegistrationWebHookUrl` with the `Registration Webhook` from the Scrypted plugin configuration.
+- Replace `StatusUpdateWebHookUrl` with the `Status Update Webhook` from the Scrypted plugin configuration.
 - Replace `MotionRecordingWebHookUrl` with the `Motion Sensor Webhook` from the Scrypted plugin configuration.
-- Replace `StatusUpdateWebHookUrl` with the Status `Update Webhook` from the Scrypted plugin configuration.
+- Replace `ButtonPressWebHookUrl` with the Status `Button Press Webhook` from the Scrypted plugin configuration.
 
 ## Run the Server
 
@@ -52,6 +53,7 @@ services:
     image: 'bschrameck/arlo-cam-api'        
     ports:
       - 4000:4000
+      - 4100:4100
       - 5000:5000
     volumes:
       - ./config.yaml:/opt/arlo-cam-api/config.yaml
@@ -67,7 +69,7 @@ Similar guidance as the Docker Compose method as above:
 touch arlo.db
 
 docker run -d \
-    -p 4000:4000 -p 5000:5000 \
+    -p 4000:4000 -p 4100:4100 -p 5000:5000 \
     --volume "$(pwd)"/config.yaml:/opt/arlo-cam-api/config.yaml \
     --volume "$(pwd)"/arlo.db:/opt/arlo-cam-api/arlo.db bschrameck/arlo-cam-api
 ```
@@ -92,15 +94,15 @@ How you keep the server running/start it automatically at boot is an exercise le
 
 ## Networking
 
-The Arlo cameras assume that they will be talking with their Base Station server using port 4000 on *the default gateway* passed from the DHCP server (usually your router). Assuming you are not running the API software on your router, you'll need a way to redirect the camera's requests to your server host.
+The Arlo cameras assume that they will be talking with their Base Station server using port 4000 on *the default gateway* passed from the DHCP server (usually your router). Audio Doorbells use port 4100. Assuming you are not running the API software on your router, you'll need a way to redirect the camera's requests to your server host.
 
 Below are a few ways to do that:
 
 - Add a static lease to your DCHP server that also sets the default gateway to the host running the server software software (recommended) 
-- Create a port forward on port 4000 on the LAN side of your router to redirect traffic to the host running the server software software
+- Create a port forward on port 4000 and 4100 on the LAN side of your router to redirect traffic to the host running the server software software
 - Run the cameras in a different VLAN and configure NAT rules to route traffic to the host running the server software software; this is a tested working scenario:
 
-    Let's say you run a Ubiquiti UniFi network in your home, using a Unifi Security Gateway (a.k.a USG3P). Your cameras reside on VLAN 3 (192.168.3.0/24), while your server running the Arlo Cam API resides on the default untagged LAN at 192.168.1.100. The cameras will try to talk to 192.168.3.1 by default in this configuration. To forward the requests to your server, instead of the default gateway, you could use [Ubiquiti's instructions](https://help.ui.com/hc/en-us/articles/215458888-UniFi-USG-Advanced-Configuration-Using-config-gateway-json) to modify the `config.gateway.json` file to look something like this:
+    Let's say you run a Ubiquiti UniFi network in your home, using a Unifi Security Gateway (a.k.a USG3P). Your cameras reside on VLAN 3 (192.168.3.0/24), while your server running the Arlo Cam API resides on the default untagged LAN at 192.168.1.100. The cameras will try to talk to 192.168.3.1 by default in this configuration. To forward the requests to your server, instead of the default gateway, you could use [Ubiquiti's instructions](https://help.ui.com/hc/en-us/articles/215458888-UniFi-USG-Advanced-Configuration-Using-config-gateway-json) to modify the `config.gateway.json` file to look something like this (repeating the same for port 4100):
 
     ```
     {
@@ -214,12 +216,11 @@ There is also a script to setup a Raspberry Pi with hostapd/dnsmasq and configur
 
 ## Video streaming
 
-The camera RTSP stream is available on `http://CAMERA_IP/live`.
+The camera RTSP stream is available on `http://CAMERA_IP/live`. For 4K cameras, it seems to be served on port 555 instead of the standard 554.
 
 The FFmpeg library doesn't send RTCP Response Received messages very often, and the camera seems to timeout the stream, and force itself to reauth to the wifi if this happens. This means FFmpeg and dependent apps seem to kill the camera after about 6seconds. libVLC seems to work, also Live555 - openRTSP.
 
-Blocking ALL RTCP (by dropping all UDP) appears to allow FFMPEG to function, as the cameras dont mind if no RTCP responses are received. However, if the connection dies without a TEARDOWN from the client then the cameras may just
-keep sending RTP packets and may require a reboot as they don't know the client has disconnected.
+Blocking ALL RTCP (by dropping all UDP) appears to allow FFMPEG to function, as the cameras dont mind if no RTCP responses are received. However, if the connection dies without a TEARDOWN from the client then the cameras may just keep sending RTP packets and may require a reboot as they don't know the client has disconnected.
 
 ## Audio Streaming to the Camera
 

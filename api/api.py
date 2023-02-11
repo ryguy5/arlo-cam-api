@@ -146,16 +146,6 @@ def request_speaker(serial, req_body, device: Device):
         return flask.jsonify({"result": result})
 
 
-@app.route('/device/<serial>/record', methods=['POST'])
-@validate_device_request()
-def request_record(serial, req_body, device: Camera):
-    if req_body['duration'] is None:
-        flask.abort(400)
-    else:
-        result = device.record(req_body['duration'], req_body['is4k'])
-        return flask.jsonify({"result": result})
-
-
 @app.route('/device/<serial>/friendlyname', methods=['POST'])
 @validate_device_request()
 def set_friendlyname(serial, req_body, device: Device):
