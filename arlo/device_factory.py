@@ -9,14 +9,14 @@ class DeviceFactory:
 
     @staticmethod
     def createDevice(ip, registration):
-        serial_number = registration['SystemModelNumber']
-        if serial_number.startswith(tuple(CAM_PFIXES)):
+        model_number = registration['SystemModelNumber']
+        if model_number.startswith(tuple(CAM_PFIXES)):
             device = Camera(ip, registration)
-        elif serial_number.startswith(tuple(AUD_DBELL_PFIXES)):
+        elif model_number.startswith(tuple(AUD_DBELL_PFIXES)):
             device = AudioDoorbell(ip, registration)
         else:
             return None
 
         device.status = {}
-        device.friendly_name = serial_number
+        device.friendly_name = registration['SystemSerialNumber']
         return device
