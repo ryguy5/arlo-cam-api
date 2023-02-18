@@ -504,7 +504,7 @@ RA_PARAMS_INSANE_QUALITY = {
     "Params": {
         "1080p": {
             "minbps": 204800,
-            "maxbps": 2457600,
+            "maxbps": 2097152,
             "minQP": 12,
             "maxQP": 24,
             "vbr": True,
@@ -673,9 +673,9 @@ REGISTER_SET_INSANE_QUALITY = {
     "ID": -1,
     "SetValues": {
         "VideoOutputResolution": "1080p",
-        "VideoTargetBitrate": 2500,
+        "VideoTargetBitrate": 2000,
         "HEVCVideoOutputResolution": "2160p",
-        "HEVCVideoTargetBitrate": 10240000,
+        "HEVCVideoTargetBitrate": 8000,
     }
 }
 
