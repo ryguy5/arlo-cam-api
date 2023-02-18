@@ -248,42 +248,42 @@ RA_PARAMS_OFF_QUALITY = {
     "Type": "raParams",
     "ID": -1,
     "Params": {
-            "1080p": {
-                "minbps": 102400,
-                "maxbps": 1228800,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 1024000,
-                "cbrbps": 1024000
-            },
+        "1080p": {
+            "minbps": 102400,
+            "maxbps": 1228800,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 1024000,
+            "cbrbps": 1024000
+        },
         "360p": {
-                "minbps": 51200,
-                "maxbps": 512000,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 409600,
-                "cbrbps": 409600
-            },
+            "minbps": 51200,
+            "maxbps": 512000,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 409600,
+            "cbrbps": 409600
+        },
         "480p": {
-                "minbps": 51200,
-                "maxbps": 614400,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 512000,
-                "cbrbps": 512000
-            },
+            "minbps": 51200,
+            "maxbps": 614400,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 512000,
+            "cbrbps": 512000
+        },
         "720p": {
-                "minbps": 51200,
-                "maxbps": 1024000,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 768000,
-                "cbrbps": 768000
-            }
+            "minbps": 51200,
+            "maxbps": 1024000,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 768000,
+            "cbrbps": 768000
+        }
     }
 }
 
@@ -291,51 +291,51 @@ RA_PARAMS_LOW_QUALITY = {
     "Type": "raParams",
     "ID": -1,
     "Params": {
-            "1080p": {
-                "minbps": 102400,
-                "maxbps": 532480,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 409600,
-                "cbrbps": 409600
-            },
+        "1080p": {
+            "minbps": 102400,
+            "maxbps": 532480,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 409600,
+            "cbrbps": 409600
+        },
         "4K": {
-                "minbps": 307200,
-                "maxbps": 2048000,
-                "minQP": 26,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 1024000,
-                "cbrbps": 1024000
-            },
+            "minbps": 307200,
+            "maxbps": 2048000,
+            "minQP": 26,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 1024000,
+            "cbrbps": 1024000
+        },
         "360p": {
-                "minbps": 51200,
-                "maxbps": 307200,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 102400,
-                "cbrbps": 102400
-            },
+            "minbps": 51200,
+            "maxbps": 307200,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 102400,
+            "cbrbps": 102400
+        },
         "480p": {
-                "minbps": 51200,
-                "maxbps": 409600,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 307200,
-                "cbrbps": 307200
-            },
+            "minbps": 51200,
+            "maxbps": 409600,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 307200,
+            "cbrbps": 307200
+        },
         "720p": {
-                "minbps": 51200,
-                "maxbps": 532480,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 409600,
-                "cbrbps": 409600
-            }
+            "minbps": 51200,
+            "maxbps": 532480,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 409600,
+            "cbrbps": 409600
+        }
     }
 }
 
@@ -343,51 +343,51 @@ RA_PARAMS_MEDIUM_QUALITY = {
     "Type": "raParams",
     "ID": -1,
     "Params": {
-            "1080p": {
-                "minbps": 102400,
-                "maxbps": 640000,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 512000,
-                "cbrbps": 512000
-            },
+        "1080p": {
+            "minbps": 102400,
+            "maxbps": 640000,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 512000,
+            "cbrbps": 512000
+        },
         "4K": {
-                "minbps": 307200,
-                "maxbps": 3072000,
-                "minQP": 26,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 1536000,
-                "cbrbps": 2048000
-            },
+            "minbps": 307200,
+            "maxbps": 3072000,
+            "minQP": 26,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 1536000,
+            "cbrbps": 2048000
+        },
         "360p": {
-                "minbps": 51200,
-                "maxbps": 409600,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 204800,
-                "cbrbps": 204800
-            },
+            "minbps": 51200,
+            "maxbps": 409600,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 204800,
+            "cbrbps": 204800
+        },
         "480p": {
-                "minbps": 51200,
-                "maxbps": 409600,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 409600,
-                "cbrbps": 409600
-            },
+            "minbps": 51200,
+            "maxbps": 409600,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 409600,
+            "cbrbps": 409600
+        },
         "720p": {
-                "minbps": 51200,
-                "maxbps": 599040,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 460800,
-                "cbrbps": 460800
-            }
+            "minbps": 51200,
+            "maxbps": 599040,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 460800,
+            "cbrbps": 460800
+        }
     }
 }
 
@@ -395,51 +395,51 @@ RA_PARAMS_HIGH_QUALITY = {
     "Type": "raParams",
     "ID": -1,
     "Params": {
-            "1080p": {
-                "minbps": 102400,
-                "maxbps": 819200,
-                "minQP": 35,
-                "maxQP": 40,
-                "vbr": True,
-                "targetbps": 614400,
-                "cbrbps": 614400
-            },
+        "1080p": {
+            "minbps": 102400,
+            "maxbps": 819200,
+            "minQP": 35,
+            "maxQP": 40,
+            "vbr": True,
+            "targetbps": 614400,
+            "cbrbps": 614400
+        },
         "4K": {
-                "minbps": 307200,
-                "maxbps": 5120000,
-                "minQP": 26,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 3072000,
-                "cbrbps": 3072000
-            },
+            "minbps": 307200,
+            "maxbps": 5120000,
+            "minQP": 26,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 3072000,
+            "cbrbps": 3072000
+        },
         "360p": {
-                "minbps": 51200,
-                "maxbps": 512000,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 409600,
-                "cbrbps": 409600
-            },
+            "minbps": 51200,
+            "maxbps": 512000,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 409600,
+            "cbrbps": 409600
+        },
         "480p": {
-                "minbps": 51200,
-                "maxbps": 614400,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 512000,
-                "cbrbps": 512000
-            },
+            "minbps": 51200,
+            "maxbps": 614400,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 512000,
+            "cbrbps": 512000
+        },
         "720p": {
-                "minbps": 51200,
-                "maxbps": 665600,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 512000,
-                "cbrbps": 512000
-            }
+            "minbps": 51200,
+            "maxbps": 665600,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 512000,
+            "cbrbps": 512000
+        }
     }
 }
 
@@ -449,53 +449,107 @@ RA_PARAMS_SUBSCRIPTION_QUALITY = {
     "Type": "raParams",
     "ID": -1,
     "Params": {
-            "1080p": {
-                "minbps": 102400,
-                "maxbps": 1228800,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 1024000,
-                "cbrbps": 1024000
-            },
+        "1080p": {
+            "minbps": 102400,
+            "maxbps": 1228800,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 1024000,
+            "cbrbps": 1024000
+        },
         "4K": {
-                "minbps": 307200,
-                "maxbps": 10240000,
-                "minQP": 1,
-                "maxQP": 1,
-                "vbr": False,
-                "targetbps": 10240000,
-                "cbrbps": 10240000
-            },
+            "minbps": 307200,
+            "maxbps": 10240000,
+            "minQP": 1,
+            "maxQP": 1,
+            "vbr": False,
+            "targetbps": 10240000,
+            "cbrbps": 10240000
+        },
         "360p": {
-                "minbps": 51200,
-                "maxbps": 512000,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 409600,
-                "cbrbps": 409600
-            },
+            "minbps": 51200,
+            "maxbps": 512000,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 409600,
+            "cbrbps": 409600
+        },
         "480p": {
-                "minbps": 51200,
-                "maxbps": 614400,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 512000,
-                "cbrbps": 512000
-            },
+            "minbps": 51200,
+            "maxbps": 614400,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 512000,
+            "cbrbps": 512000
+        },
         "720p": {
-                "minbps": 51200,
-                "maxbps": 1024000,
-                "minQP": 24,
-                "maxQP": 38,
-                "vbr": True,
-                "targetbps": 768000,
-                "cbrbps": 768000
-            }
+            "minbps": 51200,
+            "maxbps": 1024000,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 768000,
+            "cbrbps": 768000
+        }
     }
 }
+
+# No promises this will work...
+RA_PARAMS_INSANE_QUALITY = {
+    "Type": "raParams",
+    "ID": -1,
+    "Params": {
+        "1080p": {
+            "minbps": 204800,
+            "maxbps": 2457600,
+            "minQP": 12,
+            "maxQP": 24,
+            "vbr": True,
+            "targetbps": 2048000,
+            "cbrbps": 2048000
+        },
+        "4K": {
+            "minbps": 614400,
+            "maxbps": 10240000,
+            "minQP": 1,
+            "maxQP": 1,
+            "vbr": False,
+            "targetbps": 10240000,
+            "cbrbps": 10240000
+        },
+        "360p": {
+            "minbps": 51200,
+            "maxbps": 512000,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 409600,
+            "cbrbps": 409600
+        },
+        "480p": {
+            "minbps": 51200,
+            "maxbps": 614400,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 512000,
+            "cbrbps": 512000
+        },
+        "720p": {
+            "minbps": 51200,
+            "maxbps": 1024000,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 768000,
+            "cbrbps": 768000
+        }
+    }
+}
+
 
 #  Destination URL includes serial number
 # Camera will POST with a multipart form containing file parameter.
@@ -613,6 +667,18 @@ REGISTER_SET_SUBSCRIPTION_QUALITY = {
     }
 }
 
+# No promises this will work...
+REGISTER_SET_INSANE_QUALITY = {
+    "Type": "registerSet",
+    "ID": -1,
+    "SetValues": {
+        "VideoOutputResolution": "1080p",
+        "VideoTargetBitrate": 2500,
+        "HEVCVideoOutputResolution": "2160p",
+        "HEVCVideoTargetBitrate": 10240000,
+    }
+}
+
 REGISTER_SET_INITIAL = {
     "Type": "registerSet",
     "ID": -1,
@@ -656,44 +722,44 @@ REGISTER_SET_INITIAL_ULTRA = {
     "Type": "registerSet",
     "ID": -1,
     "SetValues": {
-            "VideoExposureCompensation": 0,
-            "VideoMirror": False,
-            "VideoFlip": False,
-            "VideoWindowStartX": 0,
-            "VideoWindowStartY": 0,
-            "VideoWindowEndX": 1280,
-            "VideoWindowEndY": 720,
-            "MaxMissedBeaconTime": 30,
-            "MaxStreamTimeLimit": 1800,
-            "VideoAntiFlickerRate": 50,
-            "WifiCountryCode": "FR",
-            "NightVisionMode": False,
-            "IRLedState": "off",
-            "IRCutState": "engaged",
-            "HdrControl": "auto",
-            "MaxUserStreamTimeLimit": 1800,
-            "MaxMotionStreamTimeLimit": 120,
-            "VideoMode": "superWide",
-            "JPEGOutputResolution": "360p",
-            "EpochBsTime": 1610925182,
-            "ChargeNotificationLed": 1,
-            "AudioMicAGC": 0,
-            "NightModeLightSourceAlert": 1,
-            "SpotlightModeAlert": 0,
-            "SpotlightIntensityAlert": 100,
-            "NightModeGrey": 0,
-            "AudioMicWNS": 0,
-            "VideoSmartZoom": "off",
-            "VideoOutputResolution": "1080p",
-            "VideoTargetBitrate": 1250,
-            "HEVCVideoOutputResolution": "2160p",
-            "HEVCVideoTargetBitrate": 3000,
-            "MaxSensorRequired": True,
-            "Audio0EncodeFormat": 0,
-            "Audio1EncodeFormat": 1,
-            "ArloSmart": True,
-            "CvrModeEnabled": False,
-            "AlertBackoffTime": 0
+        "VideoExposureCompensation": 0,
+        "VideoMirror": False,
+        "VideoFlip": False,
+        "VideoWindowStartX": 0,
+        "VideoWindowStartY": 0,
+        "VideoWindowEndX": 1280,
+        "VideoWindowEndY": 720,
+        "MaxMissedBeaconTime": 30,
+        "MaxStreamTimeLimit": 1800,
+        "VideoAntiFlickerRate": 50,
+        "WifiCountryCode": "FR",
+        "NightVisionMode": False,
+        "IRLedState": "off",
+        "IRCutState": "engaged",
+        "HdrControl": "auto",
+        "MaxUserStreamTimeLimit": 1800,
+        "MaxMotionStreamTimeLimit": 120,
+        "VideoMode": "superWide",
+        "JPEGOutputResolution": "360p",
+        "EpochBsTime": 1610925182,
+        "ChargeNotificationLed": 1,
+        "AudioMicAGC": 0,
+        "NightModeLightSourceAlert": 1,
+        "SpotlightModeAlert": 0,
+        "SpotlightIntensityAlert": 100,
+        "NightModeGrey": 0,
+        "AudioMicWNS": 0,
+        "VideoSmartZoom": "off",
+        "VideoOutputResolution": "1080p",
+        "VideoTargetBitrate": 1250,
+        "HEVCVideoOutputResolution": "2160p",
+        "HEVCVideoTargetBitrate": 3000,
+        "MaxSensorRequired": True,
+        "Audio0EncodeFormat": 0,
+        "Audio1EncodeFormat": 1,
+        "ArloSmart": True,
+        "CvrModeEnabled": False,
+        "AlertBackoffTime": 0
     }
 }
 
@@ -701,31 +767,31 @@ REGISTER_SET_INITIAL_SUBSCRIPTION = {
     "Type": "registerSet",
     "ID": -1,
     "SetValues": {
-            "VideoExposureCompensation": 0,
-            "VideoMirror": False,
-            "VideoFlip": False,
-            "VideoWindowStartX": 0,
-            "VideoWindowStartY": 0,
-            "VideoWindowEndX": 1274,
-            "VideoWindowEndY": 718,
-            "MaxMissedBeaconTime": 30,
-            "MaxStreamTimeLimit": 1800,
-            "VideoAntiFlickerRate": 50,
-            "WifiCountryCode": "EU",
-            "NightVisionMode": True,
-            "HdrControl": "off",
-            "MaxUserStreamTimeLimit": 1800,
-            "MaxMotionStreamTimeLimit": 120,
-            "VideoMode": "superWide",
-            "JPEGOutputResolution": "",
-            "ChargeNotificationLed": 0,
-            "AudioMicAGC": 0,
-            "VideoOutputResolution": "1080p",
-            "VideoTargetBitrate": 1000,
-            "Audio0EncodeFormat": 0,
-            "Audio1EncodeFormat": 1,
-            "ArloSmart": True,
-            "AlertBackoffTime": 0
+        "VideoExposureCompensation": 0,
+        "VideoMirror": False,
+        "VideoFlip": False,
+        "VideoWindowStartX": 0,
+        "VideoWindowStartY": 0,
+        "VideoWindowEndX": 1274,
+        "VideoWindowEndY": 718,
+        "MaxMissedBeaconTime": 30,
+        "MaxStreamTimeLimit": 1800,
+        "VideoAntiFlickerRate": 50,
+        "WifiCountryCode": "EU",
+        "NightVisionMode": True,
+        "HdrControl": "off",
+        "MaxUserStreamTimeLimit": 1800,
+        "MaxMotionStreamTimeLimit": 120,
+        "VideoMode": "superWide",
+        "JPEGOutputResolution": "",
+        "ChargeNotificationLed": 0,
+        "AudioMicAGC": 0,
+        "VideoOutputResolution": "1080p",
+        "VideoTargetBitrate": 1000,
+        "Audio0EncodeFormat": 0,
+        "Audio1EncodeFormat": 1,
+        "ArloSmart": True,
+        "AlertBackoffTime": 0
     }
 }
 
@@ -733,33 +799,33 @@ REGISTER_SET_TURNED_OFF = {
     "Type": "registerSet",
     "ID": -1,
     "SetValues": {
-            "VideoExposureCompensation": 0,
-            "VideoMirror": False,
-            "VideoFlip": False,
-            "VideoWindowStartX": 0,
-            "VideoWindowStartY": 0,
-            "VideoWindowEndX": 1274,
-            "VideoWindowEndY": 718,
-            "MaxMissedBeaconTime": 30,
-            "MaxStreamTimeLimit": 1800,
-            "VideoAntiFlickerRate": 50,
-            "WifiCountryCode": "EU",
-            "NightVisionMode": True,
-            "IRLedState": "off",
-            "IRCutState": "engaged",  # PowerSaving?
-            "HdrControl": "off",
-            "MaxUserStreamTimeLimit": 1800,
-            "MaxMotionStreamTimeLimit": 120,
-            "VideoMode": "superWide",
-            "JPEGOutputResolution": "",
-            "ChargeNotificationLed": 0,
-            "AudioMicAGC": 0,
-            "VideoOutputResolution": "1080p",
-            "VideoTargetBitrate": 1000,
-            "Audio0EncodeFormat": 0,
-            "Audio1EncodeFormat": 1,
-            "ArloSmart": True,
-            "AlertBackoffTime": 0
+        "VideoExposureCompensation": 0,
+        "VideoMirror": False,
+        "VideoFlip": False,
+        "VideoWindowStartX": 0,
+        "VideoWindowStartY": 0,
+        "VideoWindowEndX": 1274,
+        "VideoWindowEndY": 718,
+        "MaxMissedBeaconTime": 30,
+        "MaxStreamTimeLimit": 1800,
+        "VideoAntiFlickerRate": 50,
+        "WifiCountryCode": "EU",
+        "NightVisionMode": True,
+        "IRLedState": "off",
+        "IRCutState": "engaged",  # PowerSaving?
+        "HdrControl": "off",
+        "MaxUserStreamTimeLimit": 1800,
+        "MaxMotionStreamTimeLimit": 120,
+        "VideoMode": "superWide",
+        "JPEGOutputResolution": "",
+        "ChargeNotificationLed": 0,
+        "AudioMicAGC": 0,
+        "VideoOutputResolution": "1080p",
+        "VideoTargetBitrate": 1000,
+        "Audio0EncodeFormat": 0,
+        "Audio1EncodeFormat": 1,
+        "ArloSmart": True,
+        "AlertBackoffTime": 0
     }
 }
 
@@ -773,36 +839,36 @@ ACTIVITY_ZONE = {
     "Type": "motionZone",
     "ID": -1,
     "intrZone": [
-                {
-                    "name": "Zone 2",
-                    "id": "5461bdfe-ab83-4b58-8325-848dd2c30dda",
-                    "coords": [{"x": 0.264449, "y": 0.3}, {"x": 0.864449, "y": 0.3}, {"x": 0.864449, "y": 1}, {"x": 0.264449, "y": 1}],
-                    "color": 41210
-                }
+        {
+            "name": "Zone 2",
+            "id": "5461bdfe-ab83-4b58-8325-848dd2c30dda",
+            "coords": [{"x": 0.264449, "y": 0.3}, {"x": 0.864449, "y": 0.3}, {"x": 0.864449, "y": 1}, {"x": 0.264449, "y": 1}],
+            "color": 41210
+        }
     ]
 }
 ACTIVITY_ZONE_ALL = {
     "Type": "motionZone",
     "ID": -1,
     "intrZone": [
-            {
-                "name": "Zone 3",
-                "id": "2d10c7b1-72c7-4a42-8500-f75dbbbc860d",
-                "coords": [{"x": 0.1, "y": 0.1}, {"x": 0.7, "y": 0.1}, {"x": 0.7, "y": 0.8}, {"x": 0.1, "y": 0.8}],
-                "color": 15790130
-            },
         {
-                "name": "Zone 2",
-                "id": "4a9b190b-eae2-49eb-93f8-3e924f13a179",
-                "coords": [{"x": 0.1, "y": 0.1}, {"x": 0.7, "y": 0.1}, {"x": 0.7, "y": 0.8}, {"x": 0.1, "y": 0.8}],
-                "color": 41210
-            },
+            "name": "Zone 3",
+            "id": "2d10c7b1-72c7-4a42-8500-f75dbbbc860d",
+            "coords": [{"x": 0.1, "y": 0.1}, {"x": 0.7, "y": 0.1}, {"x": 0.7, "y": 0.8}, {"x": 0.1, "y": 0.8}],
+            "color": 15790130
+        },
         {
-                "name": "Zone 1",
-                "id": "e8c8412d-5700-4567-9709-84c8b6bcd893",
-                "coords": [{"x": 0.1, "y": 0.1}, {"x": 0.7, "y": 0.1}, {"x": 0.7, "y": 0.8}, {"x": 0.1, "y": 0.8}],
-                "color": 8524960
-            }
+            "name": "Zone 2",
+            "id": "4a9b190b-eae2-49eb-93f8-3e924f13a179",
+            "coords": [{"x": 0.1, "y": 0.1}, {"x": 0.7, "y": 0.1}, {"x": 0.7, "y": 0.8}, {"x": 0.1, "y": 0.8}],
+            "color": 41210
+        },
+        {
+            "name": "Zone 1",
+            "id": "e8c8412d-5700-4567-9709-84c8b6bcd893",
+            "coords": [{"x": 0.1, "y": 0.1}, {"x": 0.7, "y": 0.1}, {"x": 0.7, "y": 0.8}, {"x": 0.1, "y": 0.8}],
+            "color": 8524960
+        }
     ]
 }
 

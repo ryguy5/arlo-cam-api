@@ -62,6 +62,9 @@ class Camera(Device):
         elif quality == "subscription":
             ra_params = Message(copy.deepcopy(arlo.messages.RA_PARAMS_SUBSCRIPTION_QUALITY))
             registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_SUBSCRIPTION_QUALITY))
+        elif quality == "insane":
+            ra_params = Message(copy.deepcopy(arlo.messages.RA_PARAMS_INSANE_QUALITY))
+            registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INSANE_QUALITY))
         else:
             return False
 
