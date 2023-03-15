@@ -38,10 +38,11 @@ with sqlite3.connect('arlo.db') as conn:
     conn.commit()
 
 
-WIFI_COUNTRY_CODE = config['WifiCountryCode']
-NOTIFY_ON_MOTION_ALERT = config['NotifyOnMotionAlert']
-NOTIFY_ON_AUDIO_ALERT = config['NotifyOnAudioAlert']
-NOTIFY_ON_BUTTON_PRESS_ALERT = config['NotifyOnButtonPressAlert']
+WIFI_COUNTRY_CODE = config.get('WifiCountryCode', "US")
+VIDEO_ANTI_FLICKER_RATE = config.get('VideoAntiFlickerRate', 60)
+NOTIFY_ON_MOTION_ALERT = config.get('NotifyOnMotionAlert', True)
+NOTIFY_ON_AUDIO_ALERT = config.get('NotifyOnAudioAlert', False)
+NOTIFY_ON_BUTTON_PRESS_ALERT = config.get('NotifyOnButtonPressAlert', True)
 
 
 class ConnectionThread(threading.Thread):
@@ -55,6 +56,11 @@ class ConnectionThread(threading.Thread):
         while True:
             msg = self.connection.receive()
             if msg != None:
+                ack = Message(copy.deepcopy(arlo.messages.RESPONSE))
+                ack['ID'] = msg['ID']
+                s_print(f">[{self.ip}][{msg['ID']}] Ack")
+                self.connection.send(ack)
+
                 if (msg['Type'] == "registration"):
                     device = DeviceDB.from_db_serial(msg['SystemSerialNumber'])
                     if device is None:
@@ -64,7 +70,7 @@ class ConnectionThread(threading.Thread):
                     DeviceDB.persist(device)
                     s_print(f"<[{self.ip}][{msg['ID']}] Registration from {msg['SystemSerialNumber']} - {device.hostname}")
 
-                    device.send_initial_register_set(WIFI_COUNTRY_CODE)
+                    device.send_initial_register_set(WIFI_COUNTRY_CODE, VIDEO_ANTI_FLICKER_RATE)
                     webhook_manager.registration_received(
                         device.ip, device.friendly_name, device.hostname, device.serial_number, device.registration)
                 elif (msg['Type'] == "status"):
@@ -100,11 +106,6 @@ class ConnectionThread(threading.Thread):
                 else:
                     s_print(f"<[{self.ip}][{msg['ID']}] Unknown message")
                     s_print(msg)
-
-                ack = Message(copy.deepcopy(arlo.messages.RESPONSE))
-                ack['ID'] = msg['ID']
-                s_print(f">[{self.ip}][{msg['ID']}] Ack")
-                self.connection.send(ack)
                 self.connection.close()
                 break
 

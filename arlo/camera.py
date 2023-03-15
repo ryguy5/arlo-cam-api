@@ -17,12 +17,13 @@ class Camera(Device):
     def port(self):
         return 4000
 
-    def send_initial_register_set(self, wifi_country_code):
+    def send_initial_register_set(self, wifi_country_code, video_anti_flicker_rate=None):
         if self.model_number == 'VMC5040':
             registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INITIAL_ULTRA))
         else:
             registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INITIAL_SUBSCRIPTION))
         registerSet['WifiCountryCode'] = wifi_country_code
+        registerSet['VideoAntiFlickerRate'] = video_anti_flicker_rate
         self.send_message(registerSet)
         self.set_quality({'quality': 'subscription'})
         self.arm({"PIRTargetState": "Armed"})

@@ -8,6 +8,16 @@ It won't work with the mobile app, and there is no real plan to support this at 
 
 We can either emulate the basestation using the same SSID and capture and re-use the WPA-PSK to make the cameras connect to us. Or we can try and use WPS to get the cameras to sync to our own basestation.
 
+You can't use the camera's native direct-join-to-WiFi functionality; you must pair the camera as you would to a base station.
+
+Finally, while you can use the API to control the camera (e.g. set quality, arm/disarm), there is NO state maintained; if the camera restarts, or falls off WiFi and rejoins/reregisters, it will be reprovisioned with the defaults, so you will need to issue your commands to the camera again.
+
+## Tested Working Hardware
+
+- Ultra (VMC5040)
+- Pro 2 (VMC4030P)
+- Essential Spotlight Camera (VMC2030B)
+- Audio Doorbell (AAD1001)
 
 ## API Configuration
 
@@ -15,6 +25,7 @@ First, create a `config.yaml` file (available in this repo) that will be used to
 
 ```
 WifiCountryCode: "US"
+VideoAntiFlickerRate: 60
 NotifyOnMotionAlert: true
 NotifyOnAudioAlert: false
 NotifyOnButtonPressAlert: true
@@ -26,7 +37,9 @@ RegistrationWebHookUrl: "http://192.168.1.100:4321/endpoint/@scrypted/arlo-local
 ButtonPressWebHookUrl: "http://192.168.1.100:4321/endpoint/@scrypted/arlo-local/public/buttonPressed"
 ```
 
-You'll want to replace the `WifiCountryCode`. If you want to use webhooks, currently only the following webhooks are functional:
+You'll want to replace the `WifiCountryCode` with your two-letter ISO3166-1 alpha-2 code, and the `VideoAntiFlickerRate` with `50` or `60`—whatever electrical frequency your country uses (e.g. most of Europe uses 50 Hz, the US uses 60 Hz).
+
+. If you want to use webhooks, currently only the following webhooks are functional:
 - `RegistrationWebHookUrl`
 - `StatusUpdateWebHookUrl`
 - `MotionRecordingWebHookUrl`
@@ -128,6 +141,8 @@ Below are a few ways to do that:
         }
     }
     ```
+- If your networking equipment doesn't allow for any of the above, you'll need to [set up a Linux computer](https://github.com/brianschrameck/arlo-cam-api#pairing-a-camera-to-your-own-basestation) to run the API and act as a base station. This requires you to configure `hostapd` and `dhcpcd` to turn your Linux machine into an access point. You would then need to configure a static route between your main network where you run your camera software (e.g. Scrypted), and the network subnet that the cameras would join. Alternatively, you could run the camera software on the same machine that hosts Arlo Cam API and your wireless access point to avoid setting up a static route.
+
 
 ## Capture Real Base Station WPA-PSK
 
@@ -173,8 +188,6 @@ If all goes well, your `wpa.conf` file should be updated with a section that con
 You can now configure your own Wi-Fi network with that same information (same SSID, using WPA2 with the given PSK). This can be done using a separate wireless access point with a different SSID, or you may be able to broadcast additional SSIDs from your existing router/access point.
 
 You may also have to set the Wi-Fi to the same channel that the Base Station was using for cameras to connect successfully. There are many apps on the market to view wireless networks and their channels around you. Or you can just try switching to each channel for several minutes to see if the cameras connect.
-
-An [alternative, more complex option](https://github.com/brianschrameck/arlo-cam-api#pairing-a-camera-to-your-own-basestation), if you don't want to use a hardware access point is to configure `hostapd` and `dhcpcd` to turn your Linux machine into an access point. You would then need to configure a static route between your main network where you run the Arlo Cam API, and the network subnet that the cameras would join. You could also run all of the software (Arlo Cam API, `hostapd`, `dhcpcd`) on a single machine.
 
 After setting up your Wi-Fi network, unplug your Arlo Base Station and give the cameras a few minutes to reconnect. You can tell when things are working when you tail your API server logs and can see registration and status messages for your camera.
 

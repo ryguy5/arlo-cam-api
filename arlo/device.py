@@ -60,7 +60,7 @@ class Device(ABC):
                 return result
 
     @abstractmethod
-    def send_initial_register_set(self, wifi_country_code):
+    def send_initial_register_set(self, wifi_country_code, video_anti_flicker_rate=None):
         ...
 
     def status_request(self):
@@ -78,4 +78,10 @@ class Device(ABC):
     def speaker_request(self, enabled):
         register_set = Message(copy.deepcopy(arlo.messages.REGISTER_SET))
         register_set['AudioSpkrEnable'] = enabled
+        return self.send_message(register_set)
+
+    def register_set(self, set_values):
+        raw_register_set = copy.deepcopy(arlo.messages.REGISTER_SET)
+        raw_register_set['SetValues'] = set_values
+        register_set = Message(raw_register_set)
         return self.send_message(register_set)

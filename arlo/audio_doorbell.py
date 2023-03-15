@@ -17,7 +17,7 @@ class AudioDoorbell(Device):
     def port(self):
         return 4100
 
-    def send_initial_register_set(self, wifi_country_code):
+    def send_initial_register_set(self, wifi_country_code, video_anti_flicker_rate=None):
         registerSet = Message(copy.deepcopy(arlo.messages.AUDIO_DOORBELL_INITIAL_REGISTER_SET))
         self.send_message(registerSet)
 

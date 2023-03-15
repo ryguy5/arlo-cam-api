@@ -95,7 +95,7 @@ def user_stream_active(serial, req_body, device: Camera):
 @app.route('/device/<serial>/arm', methods=['POST'])
 @validate_device_request()
 def arm(serial, req_body, device: Device):
-    result = device .arm(req_body)
+    result = device.arm(req_body)
     return flask.jsonify({"result": result})
 
 
@@ -185,6 +185,13 @@ def receive_snapshot(identifier):
             else:
                 file.save(target_path)
             return ""
+
+
+@app.route('/device/<serial>/registerset', methods=['POST'])
+@validate_device_request()
+def register_set(serial, req_body, device: Device):
+    result = device.register_set(req_body)
+    return flask.jsonify({"result": result})
 
 
 @app.route('/snapshot/<identifier>', methods=['GET'])
