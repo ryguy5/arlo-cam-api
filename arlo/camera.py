@@ -8,7 +8,8 @@ from arlo.device import Device
 DEVICE_PREFIXES = [
     'VMC',
     'VML',
-    'ABC'
+    'ABC',
+    'FB'
 ]
 
 

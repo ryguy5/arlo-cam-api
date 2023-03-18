@@ -2,7 +2,6 @@ import select
 import socket
 import threading
 import sqlite3
-import time
 import yaml
 import copy
 
@@ -66,6 +65,7 @@ class ConnectionThread(threading.Thread):
                     if device is None:
                         device = DeviceFactory.createDevice(self.ip, msg)
                     else:
+                        device.ip = self.ip
                         device.registration = msg
                     DeviceDB.persist(device)
                     s_print(f"<[{self.ip}][{msg['ID']}] Registration from {msg['SystemSerialNumber']} - {device.hostname}")
