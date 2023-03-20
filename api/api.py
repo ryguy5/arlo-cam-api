@@ -7,7 +7,6 @@ from flask import send_file
 import io
 from arlo.device_db import DeviceDB
 from arlo.device import Device
-from arlo.audio_doorbell import AudioDoorbell
 from arlo.camera import Camera
 
 app = flask.Flask(__name__)
@@ -84,12 +83,12 @@ def status_request(serial, device: Device):
 @app.route('/device/<serial>/userstreamactive', methods=['POST'])
 @validate_device_request()
 def user_stream_active(serial, req_body, device: Camera):
-    active = req_body["active"]
-    if active is None:
-        flask.abort(400)
+    # active = req_body["active"]
+    # if active is None:
+    #     flask.abort(400)
 
-    result = device.set_user_stream_active(int(active))
-    return flask.jsonify({"result": result})
+    # result = device.set_user_stream_active(int(active))
+    return flask.jsonify({"result": True})
 
 
 @app.route('/device/<serial>/arm', methods=['POST'])
@@ -185,6 +184,13 @@ def receive_snapshot(identifier):
             else:
                 file.save(target_path)
             return ""
+
+
+@app.route('/device/<serial>/message', methods=['POST'])
+@validate_device_request()
+def message(serial, req_body, device: Device):
+    result = device.send_message_dict(req_body)
+    return flask.jsonify({"result": result})
 
 
 @app.route('/device/<serial>/registerset', methods=['POST'])

@@ -722,44 +722,44 @@ REGISTER_SET_INITIAL_ULTRA = {
     "Type": "registerSet",
     "ID": -1,
     "SetValues": {
-        "VideoExposureCompensation": 0,
-        "VideoMirror": False,
-        "VideoFlip": False,
-        "VideoWindowStartX": 0,
-        "VideoWindowStartY": 0,
-        "VideoWindowEndX": 1280,
-        "VideoWindowEndY": 720,
-        "MaxMissedBeaconTime": 30,
-        "MaxStreamTimeLimit": 1800,
-        "VideoAntiFlickerRate": 60, # hz
-        "WifiCountryCode": "US",
-        "NightVisionMode": False, # night vision enabled
-        "IRLedState": "off",     # ??
-        "IRCutState": "engaged", # color night vision
-        "HdrControl": "auto",    # auto HDR enabled
-        "MaxUserStreamTimeLimit": 1800,
-        "MaxMotionStreamTimeLimit": 120,
-        "VideoMode": "superWide",
-        "JPEGOutputResolution": "",
-        "EpochBsTime": 1610925182,
-        "ChargeNotificationLed": 1,  # LED when charged
-        "AudioMicAGC": 0,  # automatic gain control
-        "NightModeLightSourceAlert": 1, # enable (1)/disable (0) spotlight at night
-        "SpotlightModeAlert": 0,  # spotlight behavior: (0) Constant, (1) Flash, (2) Pulsate
-        "SpotlightIntensityAlert": 100, # spotlight brightness - DOESN'T WORK even in the Arlo app
-        "NightModeGrey": 0, # ??
-        "AudioMicWNS": 0,   # reduce wind noise
-        "VideoSmartZoom": "off",  # automatic zoom and tracking
-        "VideoOutputResolution": "1080p",
-        "VideoTargetBitrate": 1250,
-        "HEVCVideoOutputResolution": "2160p",
-        "HEVCVideoTargetBitrate": 3000,
-        "MaxSensorRequired": True, # ??
+        "AlertBackoffTime": 0,
+        "ArloSmart": True,
         "Audio0EncodeFormat": 0,
         "Audio1EncodeFormat": 1,
-        "ArloSmart": True,
+        "AudioMicAGC": 0,  # automatic gain control
+        "AudioMicWNS": 0,   # reduce wind noise
+        "ChargeNotificationLed": 1,  # LED when charged
         "CvrModeEnabled": False,
-        "AlertBackoffTime": 0
+        "EpochBsTime": 1610925182,
+        "HdrControl": "auto",    # auto HDR enabled
+        "HEVCVideoOutputResolution": "2160p",
+        "HEVCVideoTargetBitrate": 3000,
+        "IRCutState": "engaged",  # color night vision
+        "IRLedState": "off",     # ??
+        "JPEGOutputResolution": "",
+        "MaxMissedBeaconTime": 30,
+        "MaxMotionStreamTimeLimit": 120,
+        "MaxSensorRequired": True,  # ??
+        "MaxStreamTimeLimit": 1800,
+        "MaxUserStreamTimeLimit": 1800,
+        "NightModeGrey": 0,  # ??
+        "NightModeLightSourceAlert": 1,  # enable (1)/disable (0) spotlight at night
+        "NightVisionMode": False,  # night vision enabled
+        "SpotlightIntensityAlert": 100,  # spotlight brightness - DOESN'T WORK even in the Arlo app
+        "SpotlightModeAlert": 0,  # spotlight behavior: (0) Constant, (1) Flash, (2) Pulsate
+        "VideoAntiFlickerRate": 60,  # hz
+        "VideoExposureCompensation": 0,
+        "VideoFlip": False,
+        "VideoMirror": False,
+        "VideoMode": "superWide",
+        "VideoOutputResolution": "1080p",
+        "VideoSmartZoom": "off",  # automatic zoom and tracking
+        "VideoTargetBitrate": 1250,
+        "VideoWindowEndX": 1280,
+        "VideoWindowEndY": 720,
+        "VideoWindowStartX": 0,
+        "VideoWindowStartY": 0,
+        "WifiCountryCode": "US",
     }
 }
 
@@ -767,35 +767,138 @@ REGISTER_SET_INITIAL_SUBSCRIPTION = {
     "Type": "registerSet",
     "ID": -1,
     "SetValues": {
-        "VideoExposureCompensation": 0,
-        "VideoMirror": False,
-        "VideoFlip": False,
-        "VideoWindowStartX": 0,
-        "VideoWindowStartY": 0,
-        "VideoWindowEndX": 1280,
-        "VideoWindowEndY": 720,
-        "MaxMissedBeaconTime": 30,
-        "MaxStreamTimeLimit": 1800,
-        "VideoAntiFlickerRate": 60,
-        "WifiCountryCode": "US",
-        "NightVisionMode": True,
-        "HdrControl": "auto",
-        "MaxUserStreamTimeLimit": 1800,
-        "MaxMotionStreamTimeLimit": 300,
-        "VideoMode": "superWide",
-        "JPEGOutputResolution": "",
-        "ChargeNotificationLed": 0,
-        "AudioMicAGC": 0,
-        "NightModeLightSourceAlert": 1,
-        "SpotlightModeAlert": 0,
-        "SpotlightIntensityAlert": 100,
-        "NightModeGrey": 0,
-        "VideoOutputResolution": "1080p",
-        "VideoTargetBitrate": 1000,
+        "AlertBackoffTime": 0,
+        "ArloSmart": True,
         "Audio0EncodeFormat": 0,
         "Audio1EncodeFormat": 1,
-        "ArloSmart": True,
-        "AlertBackoffTime": 0
+        "AudioMicAGC": 0,
+        "ChargeNotificationLed": 0,
+        "HdrControl": "auto",
+        "JPEGOutputResolution": "",
+        "MaxMissedBeaconTime": 30,
+        "MaxMotionStreamTimeLimit": 300,
+        "MaxStreamTimeLimit": 1800,
+        "MaxUserStreamTimeLimit": 1800,
+        "NightModeGrey": 0,
+        "NightModeLightSourceAlert": 1,
+        "NightVisionMode": True,
+        "SpotlightIntensityAlert": 100,
+        "SpotlightModeAlert": 0,
+        "VideoAntiFlickerRate": 60,
+        "VideoExposureCompensation": 0,
+        "VideoFlip": False,
+        "VideoMirror": False,
+        "VideoMode": "superWide",
+        "VideoOutputResolution": "1080p",
+        "VideoTargetBitrate": 1000,
+        "VideoWindowEndX": 1280,
+        "VideoWindowEndY": 720,
+        "VideoWindowStartX": 0,
+        "VideoWindowStartY": 0,
+        "WifiCountryCode": "US",
+    }
+}
+
+REGISTER_SET_INITIAL_VID_DOORBELL = {
+    "Type": "registerSet",
+    "ID": -1,
+    "SetValues": {
+        "AlertBackoffTime": 0,
+        "ArloSmart": False,
+        "Audio0EncodeFormat": 0,
+        "Audio1EncodeFormat": 1,
+        "CallEnableLED": True,  # LED on Call Accepted
+        "EnableCLI": False,
+        "EpochBsTime": 1679235744,
+        "HdrControl": "auto",
+        "LEDPirStatus": True,   # Breathe LED on Motion Detection
+        "LogCOMM": 0,
+        "LogFrequency": 2,
+        "LogLevel": 1,
+        "MaxMissedBeaconTime": 10,
+        "MaxStreamTimeLimit": 1800,
+        "NightVisionMode": True,
+        "PIRAction": "Snapshot",
+        "PIRStartSensitivity": 80,
+        "PIRTargetState": "Armed",
+        "SilentMode": False,
+        "StreamingLedEnabled": True,  # LED on Live Streaming & Recording
+        "TradChimePlayDur": 0,
+        "TraditionalChime": False,
+        "VideoAntiFlickerRate": 60,
+        "VideoExposureCompensation": 0,
+        "VideoFlip": False,
+        "VideoMirror": False,
+        "VideoMotionEstimationEnable": True,
+        "VideoMotionSensitivity": 80,
+        "VideoOutputResolution": "1536sq",
+        "VideoTargetBitrate": 950,  # 750 originally
+        "VideoWindowEndX": 1536,
+        "VideoWindowEndY": 1536,
+        "VideoWindowStartX": 0,
+        "VideoWindowStartY": 0,
+        "WifiCountryCode": "US",
+    }
+}
+
+RA_PARAMS_VID_DOORBELL = {
+    "Type": "raParams",
+    "ID": 2,
+    "Params": {
+        "1080sq": {
+            "minbps": 51200,
+            "maxbps": 1024000,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 768000,
+            "cbrbps": 768000
+        },
+        "1536sq": {
+            "minbps": 102400,
+            "maxbps": 1228800,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 1024000,
+            "cbrbps": 1024000
+        },
+        "720sq": {
+            "minbps": 51200,
+            "maxbps": 614400,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 512000,
+            "cbrbps": 512000
+        }
+    }
+},
+
+REGISTER_SET_720SQ = {
+    "Type": "registerSet",
+    "ID": -1,
+    "SetValues": {
+        "VideoOutputResolution": "720sq",
+        "VideoTargetBitrate": 400,
+    }
+}
+
+REGISTER_SET_1080SQ = {
+    "Type": "registerSet",
+    "ID": -1,
+    "SetValues": {
+        "VideoOutputResolution": "1080sq",
+        "VideoTargetBitrate": 500,
+    }
+}
+
+REGISTER_SET_1536SQ = {
+    "Type": "registerSet",
+    "ID": -1,
+    "SetValues": {
+        "VideoOutputResolution": "1536sq",
+        "VideoTargetBitrate": 950,  # 750 originally
     }
 }
 
@@ -994,7 +1097,8 @@ AUDIO_DOORBELL_RTP_INVITE = {
         "PayloadType": 97,
         "PayloadTypeString": "OPUS",
         "Bitrate": 32000,
-        "ID": 2},
+        "ID": 2
+    },
     "buttonPressed": True
 }
 
@@ -1006,11 +1110,11 @@ AUDIO_DOORBELL_RTP_RESPONSE = {
     "Response": "Ack",
     "AudioStream": {
         "PayloadType": 97,
-        "PayloadTypeString":
-        "OPUS",
+        "PayloadTypeString": "OPUS",
         "Bitrate": 32000,
         "Port": 8000,  # send audio to doorbell here
-        "ID": 2}
+        "ID": 2
+    }
 }
 
 # TO DOORBELL
@@ -1021,7 +1125,8 @@ AUDIO_DOORBELL_RTP_REQUEST = {
         "PayloadType": 97,
         "PayloadTypeString": "OPUS",
         "Port": 53046,  # audio from doorbell gets sent here
-        "ID": 3}
+        "ID": 3
+    }
 }
 
 # FROM DOORBELL
@@ -1035,7 +1140,8 @@ AUDIO_DOORBELL_RTP_RESPONSE_2 = {
         "PayloadTypeString": "OPUS",
         "Bitrate": 32000,
         "Port": 8000,  # send audio to doorbell here
-        "ID": 3}
+        "ID": 3
+    }
 }
 
 AUDIO_DOORBELL_END_OF_CALL_1 = {
@@ -1057,222 +1163,4 @@ AUDIO_DOORBELL_END_OF_CALL = {
     "ID": 62,
     "Streams": [2],
     "EndOfCall": False
-}
-
-ESSENTIAL_SPOTLIGHT_STATUS = {
-    "ID": 69,
-    "Type": "status",
-    "SystemFirmwareVersion": "1.090.30.4_42_f73fa53",
-    "HardwareRevision": "H9",
-    "SystemSerialNumber": "YOURSERIAL",
-    "BatPercent": 95,
-    "BatTech": "Rechargeable",
-    "ChargerTech": "None",
-    "ChargingState": "Off",
-    "SecureType": "Production",
-    "WifiCountryDetails": "US/0",
-    "WifiChannel": 1,
-    "Bat1Volt": 4.015,
-    "Temperature": 22,
-    "Battery1CaliVoltage": 4.015,
-    "SignalStrengthIndicator": 2,
-    "Streamed": 14,
-    "UserStreamed": 14,
-    "MotionStreamed": 0,
-    "IRLEDsOn": 0,
-    "PoweredOn": 473,
-    "CameraOnline": 446,
-    "CameraOffline": 27,
-    "WifiConnectionCount": 1,
-    "WifiConnectionAttempts": 1,
-    "PIREvents": 1,
-    "PIRConfigFails": 0,
-    "PIRTriggers": 11,
-    "PIROOREvents": 0,
-    "AudioEvents": 0,
-    "BackoffBlockedEvents": 1,
-    "FailedStreams": 4,
-    "FailedUpgrades": 458754,
-    "SnapshotCount": 4,
-    "LogFrequency": 2,
-    "CriticalBatStatus": 0,
-    "ISPOn": 86,
-    "TimeAtPlug": 0,
-    "TimeAtUnPlug": 0,
-    "PercentAtPlug": 0,
-    "PercentAtUnPlug": 0,
-    "ISPWatchdogCount": 2,
-    "ISPWatchdogCount2": 2,
-    "SecsPerPercentCurr": 0,
-    "SecsPerPercentAvg": 0,
-    "RtcpDiscCnt": 0,
-    "InitialLSValue": 150557,
-    "VPkt": 1332,
-    "VErr": 0,
-    "VEmp": 0,
-    "VFrm": 0,
-    "VRet": 0,
-    "AaPkt": 212,
-    "AaErr": 0,
-    "AaEmp": 1,
-    "AaRet": 0,
-    "AoPkt": 680,
-    "AoErr": 0,
-    "AoEmp": 0,
-    "AoRet": 0,
-    "ADrp": 0,
-    "V2Pkt": 0,
-    "V2Err": 0,
-    "V2Emp": 0,
-    "V2Frm": 0,
-    "V2Ret": 0,
-    "Aa2Pkt": 0,
-    "Aa2Err": 0,
-    "Aa2Emp": 0,
-    "Aa2Ret": 0,
-    "Ao2Pkt": 0,
-    "Ao2Err": 0,
-    "Ao2Emp": 0,
-    "Ao2Ret": 0,
-    "A2Drp": 0,
-    "TxErr": 0,
-    "TxFail": 200,
-    "TxPhyE1": 0,
-    "TxPhyE2": 16,
-    "MinFb0": 0,
-    "MaxFb0": 0,
-    "AvgFb0": 0,
-    "MinFb1": 0,
-    "MaxFb1": 0,
-    "AvgFb1": 0,
-    "MinDr0": 85312,
-    "MaxDr0": 1275056,
-    "AvgDr0": 684919,
-    "MinDr1": 0,
-    "MaxDr1": 0,
-    "AvgDr1": 0,
-    "BattChargeMaxTemp": 60,
-    "SpotlightEnabled": True,
-    "WifiAntDiv": 255,
-    "WifiInitFails": 0,
-    "McuCrashCount": 0,
-    "WifiRSSI": -76,
-    "ApMacAddress": "CC:40:D0:86:DF:8E",
-    "GwMacAddress": "CC:40:D0:86:DF:8E",
-    "DhcpMacAddress": "00:00:00:00:00:00",
-    "ApMacCount": 2,
-    "IspWatchdogCount3": 0,
-    "IspExceptionResetCount": 0,
-    "IspSetupAppExecCount": 2}
-
-ESSENTIAL_SPOTLIGHT_ALERT = {
-    "ID": 87,
-    "Type": "alert",
-    "AlertType":
-    "spotlightAlert",
-    "SpotlightState": {
-        "SpotlightEnabled": True
-    }
-}
-
-ESSENTIAL_SPOTLIGHT_REGISTRATION = {
-    "ID": 1,
-    "Type": "registration",
-    "SystemSerialNumber": "YOURSERIAL",
-    "SystemModelNumber": "VMC2030B",
-    "SystemFirmwareVersion": "1.090.30.4_42_f73fa53",
-    "CommProtocolVersion": 1,
-    "BatPercent": 95,
-    "SignalStrengthIndicator": 5,
-    "LogFrequency": 2,
-    "BatTech": "Rechargeable",
-    "ChargerTech": "None",
-    "ChargingState": "Off",
-    "ThermalShutdownRechargeMaxTemp": 60,
-    "Temperature": 22,
-    "InterfaceVersion": 1,
-    "Capabilities": ["IRLED", "IRCutFilter", "PirMotion", "NightVision", "Temperature", "BatteryLevel", "Microphone", "Speaker", "SignalStrength", "Solar", "BatteryCharging", "H.264Streaming", "JPEGSnapshot", "AutomatedStop", "BEC", "RaParams", "IcmpOffload"],
-    "HardwareRevision": "H9",
-    "Sync": True,
-    "BattChargeMinTemp": 0,
-    "BattChargeMaxTemp": 60,
-    "ThermalShutdownMinTemp": -20,
-    "ThermalShutdownMaxTemp": 74,
-    "BootSeconds": 19
-}
-
-ESSENTIAL_SPOTLIGHT_REGISTER_SET_INITIAL = {
-    "Type": "registerSet",
-    "ID": 13,
-    "SetValues": {
-        "VideoExposureCompensation": 0,
-        "VideoMirror": False,
-        "VideoFlip": False,
-        "VideoWindowStartX": 0,
-        "VideoWindowStartY": 0,
-        "VideoWindowEndX": 1280,
-        "VideoWindowEndY": 720,
-        "MaxMissedBeaconTime": 30,
-        "MaxStreamTimeLimit": 1800,
-        "VideoAntiFlickerRate": 60,
-        "WifiCountryCode": "US",
-        "NightVisionMode": True,
-        "HdrControl": "auto",
-        "MaxUserStreamTimeLimit": 1800,
-        "MaxMotionStreamTimeLimit": 300,
-        "VideoMode": "superWide",
-        "JPEGOutputResolution": "",
-        "EpochBsTime": 1677941556,
-        "ChargeNotificationLed": 0,
-        "AudioMicAGC": 0,
-        "NightModeLightSourceAlert": 1,
-        "SpotlightModeAlert": 0,
-        "SpotlightIntensityAlert": 100,
-        "NightModeGrey": 0,
-        "VideoOutputResolution": "1080p",
-        "VideoTargetBitrate": 750,
-        "Audio0EncodeFormat": 0,
-        "Audio1EncodeFormat": 1,
-        "ArloSmart": False,
-        "AlertBackoffTime": 0
-    }
-}
-
-ESSENTIAL_SPOTLIGHT_RA_PARAMS = {
-    "Type": "raParams",
-    "ID": 14,
-    "Params": {
-        "1080p": {
-            "minbps": 102400,
-            "maxbps": 1024000,
-            "minQP": 24,
-            "maxQP": 38,
-            "vbr": True,
-            "targetbps": 768000,
-            "cbrbps": 768000},
-        "360p": {
-            "minbps": 51200,
-            "maxbps": 409600,
-            "minQP": 24,
-            "maxQP": 38,
-            "vbr": True,
-            "targetbps": 204800,
-            "cbrbps": 204800},
-        "480p": {
-            "minbps": 51200,
-            "maxbps": 409600,
-            "minQP": 24,
-            "maxQP": 38,
-            "vbr": True,
-            "targetbps": 409600,
-            "cbrbps": 409600},
-        "720p": {
-            "minbps": 51200,
-            "maxbps": 768000,
-            "minQP": 24,
-            "maxQP": 38,
-            "vbr": True,
-            "targetbps": 512000,
-            "cbrbps": 614400}
-    }
 }

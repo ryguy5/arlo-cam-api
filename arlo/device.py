@@ -81,7 +81,11 @@ class Device(ABC):
         return self.send_message(register_set)
 
     def register_set(self, set_values):
-        raw_register_set = copy.deepcopy(arlo.messages.REGISTER_SET)
-        raw_register_set['SetValues'] = set_values
-        register_set = Message(raw_register_set)
-        return self.send_message(register_set)
+        register_set = copy.deepcopy(arlo.messages.REGISTER_SET)
+        register_set['SetValues'] = set_values
+        register_set_message = Message(register_set)
+        return self.send_message(register_set_message)
+
+    def send_message_dict(self, message_dict):
+        message = Message(message_dict)
+        return self.send_message(message)

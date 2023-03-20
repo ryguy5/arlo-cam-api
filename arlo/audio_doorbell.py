@@ -1,4 +1,3 @@
-import threading
 import copy
 
 from arlo.messages import Message
@@ -11,8 +10,6 @@ DEVICE_PREFIXES = [
 
 
 class AudioDoorbell(Device):
-    sqliteLock = threading.Lock()
-
     @property
     def port(self):
         return 4100

@@ -1,4 +1,3 @@
-import time
 import copy
 
 from arlo.messages import Message
