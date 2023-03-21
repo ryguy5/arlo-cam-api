@@ -803,28 +803,35 @@ REGISTER_SET_INITIAL_VID_DOORBELL = {
     "Type": "registerSet",
     "ID": -1,
     "SetValues": {
-        "AlertBackoffTime": 0,
-        "ArloSmart": False,
-        "Audio0EncodeFormat": 0,
-        "Audio1EncodeFormat": 1,
-        "CallEnableLED": True,  # LED on Call Accepted
+        "CallEnableLED": True, # LED on Call Accepted
         "EnableCLI": False,
-        "EpochBsTime": 1679235744,
-        "HdrControl": "auto",
-        "LEDPirStatus": True,   # Breathe LED on Motion Detection
+        "LEDPirStatus": True, # Breathe LED on Motion Detection
         "LogCOMM": 0,
         "LogFrequency": 2,
         "LogLevel": 1,
+        "SilentMode": False,
+        "StreamingLedEnabled": True, # LED on Live Streaming & Recording
+        "TradChimePlayDur": 0,
+        "TraditionalChime": False
+    }
+}
+
+REGISTER_SET_INITIAL_2_VID_DOORBELL = {
+    "Type": "registerSet",
+    "ID": -1,
+    "SetValues": {
+        "AlertBackoffTime": 0,
+        "ArloSmart": True,
+        "Audio0EncodeFormat": 0,
+        "Audio1EncodeFormat": 1,
+        "EpochBsTime": 1679235744,
+        "HdrControl": "auto",
         "MaxMissedBeaconTime": 10,
         "MaxStreamTimeLimit": 1800,
         "NightVisionMode": True,
         "PIRAction": "Snapshot",
         "PIRStartSensitivity": 80,
         "PIRTargetState": "Armed",
-        "SilentMode": False,
-        "StreamingLedEnabled": True,  # LED on Live Streaming & Recording
-        "TradChimePlayDur": 0,
-        "TraditionalChime": False,
         "VideoAntiFlickerRate": 60,
         "VideoExposureCompensation": 0,
         "VideoFlip": False,
@@ -832,12 +839,12 @@ REGISTER_SET_INITIAL_VID_DOORBELL = {
         "VideoMotionEstimationEnable": True,
         "VideoMotionSensitivity": 80,
         "VideoOutputResolution": "1536sq",
-        "VideoTargetBitrate": 950,  # 750 originally
+        "VideoTargetBitrate": 750,
         "VideoWindowEndX": 1536,
         "VideoWindowEndY": 1536,
         "VideoWindowStartX": 0,
         "VideoWindowStartY": 0,
-        "WifiCountryCode": "US",
+        "WifiCountryCode": "US"
     }
 }
 
@@ -873,7 +880,7 @@ RA_PARAMS_VID_DOORBELL = {
             "cbrbps": 512000
         }
     }
-},
+}
 
 REGISTER_SET_720SQ = {
     "Type": "registerSet",
@@ -898,7 +905,7 @@ REGISTER_SET_1536SQ = {
     "ID": -1,
     "SetValues": {
         "VideoOutputResolution": "1536sq",
-        "VideoTargetBitrate": 950,  # 750 originally
+        "VideoTargetBitrate": 750,  # 750 originally
     }
 }
 

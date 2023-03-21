@@ -186,20 +186,6 @@ def receive_snapshot(identifier):
             return ""
 
 
-@app.route('/device/<serial>/message', methods=['POST'])
-@validate_device_request()
-def message(serial, req_body, device: Device):
-    result = device.send_message_dict(req_body)
-    return flask.jsonify({"result": result})
-
-
-@app.route('/device/<serial>/registerset', methods=['POST'])
-@validate_device_request()
-def register_set(serial, req_body, device: Device):
-    result = device.register_set(req_body)
-    return flask.jsonify({"result": result})
-
-
 @app.route('/snapshot/<identifier>', methods=['GET'])
 def get_snapshot(identifier):
     start_path = os.path.abspath('/tmp')
@@ -218,6 +204,20 @@ def get_snapshot(identifier):
         os.remove(target_path)
         # send it to client
         return send_file(return_data, mimetype='image/jpeg', attachment_filename=f'{identifier}.jpg')
+
+
+@app.route('/device/<serial>/message', methods=['POST'])
+@validate_device_request()
+def message(serial, req_body, device: Device):
+    result = device.send_message_dict(req_body)
+    return flask.jsonify({"result": result})
+
+
+@app.route('/device/<serial>/registerset', methods=['POST'])
+@validate_device_request()
+def register_set(serial, req_body, device: Device):
+    result = device.register_set(req_body)
+    return flask.jsonify({"result": result})
 
 
 def get_thread():

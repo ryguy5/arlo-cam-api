@@ -28,12 +28,12 @@ class Device(ABC):
     def __getitem__(self, key):
         return self.registration[key]
 
-    def send_message(self, message):
+    def send_message(self, message: Message, port=None):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
 
             sock.settimeout(5.0)
             try:
-                sock.connect((self.ip, self.port))
+                sock.connect((self.ip, port or self.port))
             except OSError as msg:
                 print('Connection to camera failed: {msg}')
                 return False
@@ -43,7 +43,7 @@ class Device(ABC):
                 arloSock = ArloSocket(sock)
                 self.id += 1
                 message['ID'] = self.id
-                s_print(f">[{self.ip}][{self.id}] {message['Type']}")
+                s_print(f">[{self.ip}][{self.id}] {message.toNetworkMessage()}")
                 arloSock.send(message)
                 ack = arloSock.receive()
                 if (ack != None):
