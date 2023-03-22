@@ -3,6 +3,7 @@ import json
 
 from arlo.messages import Message
 
+
 class ArloSocket:
 
     def __init__(self, sock=None):
@@ -18,7 +19,11 @@ class ArloSocket:
         self.sock.sendall(message.toNetworkMessage())
 
     def receive(self):
-        data = self.sock.recv(1024).decode(encoding="utf-8")
+        chunk = self.sock.recv(1024)
+        if chunk == b'':
+            raise RuntimeError("socket connection broken")
+
+        data = chunk.decode(encoding="utf-8")
         if data.startswith("L:"):
             delimiter = data.index(" ")
             dataLength = int(data[2:delimiter])
