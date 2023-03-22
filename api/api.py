@@ -55,10 +55,12 @@ def list():
         return flask.jsonify(devices)
 
 
-@app.route('/device/<serial>', methods=['GET'])
+@app.route('/device/<serial>', methods=['GET', 'DELETE'])
 @validate_device_request(body_required=False)
-def status(serial, device: Device):
-    if device.status is None:
+def device(serial, device: Device):
+    if flask.request.method == 'DELETE':
+        return flask.jsonify({"result": DeviceDB.delete(device)})
+    elif device.status is None:
         return flask.jsonify({})
     else:
         return flask.jsonify(device.status.dictionary)
