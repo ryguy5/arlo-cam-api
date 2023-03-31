@@ -21,7 +21,7 @@ class ArloSocket:
     def receive(self):
         chunk = self.sock.recv(1024)
         if chunk == b'':
-            raise RuntimeError("socket connection broken")
+            return None
 
         data = chunk.decode(encoding="utf-8")
         if data.startswith("L:"):
@@ -30,15 +30,17 @@ class ArloSocket:
             json_data = data[delimiter+1:delimiter+1+dataLength]
         else:
             return None
+
         read = len(json_data)
         while read < dataLength:
             to_read = min(dataLength - read, 1024)
             chunk = self.sock.recv(to_read)
             if chunk == b'':
-                raise RuntimeError("socket connection broken")
+                return None
             chunk_str = chunk.decode(encoding="utf-8")
             json_data += chunk_str
             read = read + len(chunk_str)
+
         return Message(json.loads(json_data))
 
     def close(self):

@@ -1171,3 +1171,124 @@ AUDIO_DOORBELL_END_OF_CALL = {
     "Streams": [2],
     "EndOfCall": False
 }
+
+REGISTER_SET_INITIAL_FLOODLIGHT = {
+    "Type": "registerSet",
+    "ID": 2,
+    "SetValues": {
+        "AlertBackoffTime": 0,
+        "ArloSmart": True,
+        "Audio0EncodeFormat": 0,
+        "Audio1EncodeFormat": 1,
+        "AudioMicAGC": 0,
+        "AudioMicVolume": 4,
+        "AudioMicWNS": 0,
+        "AudioSpkrEnable": True,
+        "AudioTargetState": "Disarmed",
+        "ChargeNotificationLed": 1,
+        "CvrModeEnabled": False,
+        "DefaultMotionStreamTimeLimit": 28,
+        "DuskToDawnThrshVal": 26, # Dusk to Dawn Sensor setting; unclear what the range is
+        "EpochBsTime": 1679206967,
+        "HdrControl": "auto",
+        "HEVCVideoOutputResolution": "1440p",
+        "HEVCVideoTargetBitrate": 1000,
+        "JPEGOutputResolution": "",
+        "MaxMissedBeaconTime": 10,
+        "MaxMotionStreamTimeLimit": 300,
+        "MaxSensorRequired": True,
+        "MaxStreamTimeLimit": 1800,
+        "MaxUserStreamTimeLimit": 1800,
+        "NightModeLightSourceAlert": 1,
+        "NightVisionMode": True,
+        "PIRAction": "Stream+Spotlight", # turn on floodlight with motion
+        "PIRStartSensitivity": 95,
+        "PIRTargetState": "Armed",
+        "SpotlightDurationManual": 300, # floodlight duration when manually activated
+        "SpotlightIntensityAlert": 12593, # floodlight brightness when motion detected, 25700 == 100%
+        "SpotlightIntensityManual": 12593, # floodlight brightness when manually activated, 25700 == 100%
+        "SpotlightModeAlert": 0, # floodlight behavior when motion detected: (0) Constant , (1) Flash, (2) Pulsate if the same as spotlight cam (unclear if (1) Flash is supported)
+        "SpotlightModeManual": 0, # floodlight behavior when manually activated: (0) Constant, (2) Pulsate if the same as spotlight cam (unclear if (1) Flash is supported)
+        "VideoAntiFlickerRate": 60,
+        "VideoExposureCompensation": 0,
+        "VideoFlip": False,
+        "VideoMirror": False,
+        "VideoMode": "wide",
+        "VideoMotionEstimationEnable": False,
+        "VideoOutputResolution": "1080p",
+        "VideoSmartZoom": "off",
+        "VideoTargetBitrate": 750,
+        "VideoWindowEndX": 1280,
+        "VideoWindowEndY": 720,
+        "VideoWindowStartX": 0,
+        "VideoWindowStartY": 0,
+        "WifiCountryCode": "US"
+    }
+}
+
+RA_PARAMS_FLOODLIGHT = {
+    "Type": "raParams",
+    "ID": 3,
+    "Params": {
+        "1080p": {
+            "minbps": 102400,
+            "maxbps": 1024000,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 768000,
+            "cbrbps": 768000
+        },
+        "2K": {
+            "minbps": 307200,
+            "maxbps": 2048000,
+            "minQP": 26,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 1024000,
+            "cbrbps": 1024000
+        },
+        "720p": {
+            "minbps": 51200,
+            "maxbps": 768000,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 512000,
+            "cbrbps": 614400
+        }
+    }
+}
+
+REGISTER_SET_LOW_QUALITY_FLOODLIGHT = {
+    "Type": "registerSet",
+    "ID": -1,
+    "SetValues": {
+        "VideoOutputResolution": "720p",
+        "VideoTargetBitrate": 400,
+        "HEVCVideoOutputResolution": "1440p",
+        "HEVCVideoTargetBitrate": 1000,
+    }
+}
+
+REGISTER_SET_MEDIUM_QUALITY_FLOODLIGHT = {
+    "Type": "registerSet",
+    "ID": -1,
+    "SetValues": {
+        "VideoOutputResolution": "1080p",
+        "VideoTargetBitrate": 500,
+        "HEVCVideoOutputResolution": "1440p",
+        "HEVCVideoTargetBitrate": 1000,
+    }
+}
+
+REGISTER_SET_HIGH_QUALITY_FLOODLIGHT = {
+    "Type": "registerSet",
+    "ID": -1,
+    "SetValues": {
+        "VideoOutputResolution": "1080p",
+        "VideoTargetBitrate": 750,
+        "HEVCVideoOutputResolution": "1440p",
+        "HEVCVideoTargetBitrate": 1000,
+    }
+}

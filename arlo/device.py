@@ -48,11 +48,10 @@ class Device(ABC):
                 ack = arloSock.receive()
                 if (ack != None):
                     if (ack['ID'] == message['ID']):
+                        s_print(f"<[{self.ip}][{self.id}] {ack.toNetworkMessage()}")
                         if ('Response' in ack and ack['Response'] != "Ack"):
-                            s_print(f"<[{self.ip}][{self.id}] {ack['Response']}")
                             result = False
                         else:
-                            s_print(f"<[{self.ip}][{self.id}] Ack")
                             result = True
             except:
                 print(f'Exception: {sys.exc_info()}')

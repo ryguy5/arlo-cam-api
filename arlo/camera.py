@@ -18,13 +18,16 @@ class Camera(Device):
         return 4000
 
     def send_initial_register_set(self, wifi_country_code, video_anti_flicker_rate=None):
-        if self.model_number == 'VMC5040':
+        if self.model_number.startswith('VMC5040'):
             registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INITIAL_ULTRA))
+        elif self.model_number.startswith('FB1001'):
+            registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INITIAL_FLOODLIGHT))
         else:
             registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INITIAL_SUBSCRIPTION))
         registerSet['WifiCountryCode'] = wifi_country_code
         registerSet['VideoAntiFlickerRate'] = video_anti_flicker_rate
         self.send_message(registerSet)
+
         self.set_quality({'quality': 'subscription'})
         self.arm({"PIRTargetState": "Armed"})
 
@@ -52,20 +55,40 @@ class Camera(Device):
     def set_quality(self, args):
         quality = args["quality"].lower()
         if quality == "low":
-            ra_params = Message(copy.deepcopy(arlo.messages.RA_PARAMS_LOW_QUALITY))
-            registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_LOW_QUALITY))
+            ra_params = Message(copy.deepcopy(
+                arlo.messages.RA_PARAMS_FLOODLIGHT if self.model_number.startswith('FB1001')
+                else arlo.messages.RA_PARAMS_LOW_QUALITY))
+            registerSet = Message(copy.deepcopy(
+                arlo.messages.REGISTER_SET_LOW_QUALITY_FLOODLIGHT if self.model_number.startswith('FB1001')
+                else arlo.messages.REGISTER_SET_LOW_QUALITY))
         elif quality == "medium":
-            ra_params = Message(copy.deepcopy(arlo.messages.RA_PARAMS_MEDIUM_QUALITY))
-            registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_MEDIUM_QUALITY))
+            ra_params = Message(copy.deepcopy(
+                arlo.messages.RA_PARAMS_FLOODLIGHT if self.model_number.startswith('FB1001')
+                else arlo.messages.RA_PARAMS_MEDIUM_QUALITY))
+            registerSet = Message(copy.deepcopy(
+                arlo.messages.REGISTER_SET_MEDIUM_QUALITY_FLOODLIGHT if self.model_number.startswith('FB1001')
+                else arlo.messages.REGISTER_SET_MEDIUM_QUALITY))
         elif quality == "high":
-            ra_params = Message(copy.deepcopy(arlo.messages.RA_PARAMS_HIGH_QUALITY))
-            registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_HIGH_QUALITY))
+            ra_params = Message(copy.deepcopy(
+                arlo.messages.RA_PARAMS_FLOODLIGHT if self.model_number.startswith('FB1001')
+                else arlo.messages.RA_PARAMS_HIGH_QUALITY))
+            registerSet = Message(copy.deepcopy(
+                arlo.messages.REGISTER_SET_HIGH_QUALITY_FLOODLIGHT if self.model_number.startswith('FB1001')
+                else arlo.messages.REGISTER_SET_HIGH_QUALITY))
         elif quality == "subscription":
-            ra_params = Message(copy.deepcopy(arlo.messages.RA_PARAMS_SUBSCRIPTION_QUALITY))
-            registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_SUBSCRIPTION_QUALITY))
+            ra_params = Message(copy.deepcopy(
+                arlo.messages.RA_PARAMS_FLOODLIGHT if self.model_number.startswith('FB1001')
+                else arlo.messages.RA_PARAMS_SUBSCRIPTION_QUALITY))
+            registerSet = Message(copy.deepcopy(
+                arlo.messages.REGISTER_SET_HIGH_QUALITY_FLOODLIGHT if self.model_number.startswith('FB1001')
+                else arlo.messages.REGISTER_SET_SUBSCRIPTION_QUALITY))
         elif quality == "insane":
-            ra_params = Message(copy.deepcopy(arlo.messages.RA_PARAMS_INSANE_QUALITY))
-            registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INSANE_QUALITY))
+            ra_params = Message(copy.deepcopy(
+                arlo.messages.RA_PARAMS_FLOODLIGHT if self.model_number.startswith('FB1001')
+                else arlo.messages.RA_PARAMS_INSANE_QUALITY))
+            registerSet = Message(copy.deepcopy(
+                arlo.messages.REGISTER_SET_HIGH_QUALITY_FLOODLIGHT if self.model_number.startswith('FB1001')
+                else arlo.messages.REGISTER_SET_INSANE_QUALITY))
         else:
             return False
 
