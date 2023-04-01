@@ -29,7 +29,10 @@ class Camera(Device):
         self.send_message(registerSet)
 
         self.set_quality({'quality': 'subscription'})
-        self.arm({"PIRTargetState": "Armed"})
+
+        # The Floodlight initial register set includes the Armed status already
+        if not self.model_number.startswith('FB1001'):
+            self.arm({"PIRTargetState": "Armed"})
 
     def pir_led(self, args):
         register_set = Message(copy.deepcopy(arlo.messages.REGISTER_SET))
@@ -99,13 +102,14 @@ class Camera(Device):
 
         pir_target_state = args['PIRTargetState']
         pir_start_sensitivity = args.get('PIRStartSensitivity') or 80
+        pir_action = args.get('PIRAction') or 'Stream'
         video_motion_estimation_enable = args.get('VideoMotionEstimationEnable') or False
         audio_target_state = args.get('AudioTargetState') or 'Disarmed'
 
         register_set["SetValues"] = {
             "PIRTargetState": pir_target_state,
             "PIRStartSensitivity": pir_start_sensitivity,
-            "PIRAction": "Stream",
+            "PIRAction": pir_action,
             "VideoMotionEstimationEnable": video_motion_estimation_enable,
             "VideoMotionSensitivity": 80,
             "AudioTargetState": audio_target_state,
