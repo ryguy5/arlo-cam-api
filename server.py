@@ -81,6 +81,7 @@ class ConnectionThread(threading.Thread):
                     DeviceDB.persist(device)
                     webhook_manager.status_received(device.ip, device.friendly_name,
                                                     device.hostname, device.serial_number, device.status)
+                    device.send_epoch_bs_time()
                 elif (msg['Type'] == "alert"):
                     device = DeviceDB.from_db_ip(self.ip)
                     alert_type = msg['AlertType']

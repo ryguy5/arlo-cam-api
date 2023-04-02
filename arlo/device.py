@@ -1,6 +1,7 @@
 import socket
 import sys
 import copy
+import time
 
 from abc import ABC, abstractproperty, abstractmethod
 from arlo.messages import Message
@@ -71,12 +72,18 @@ class Device(ABC):
 
     def mic_request(self, enabled):
         register_set = Message(copy.deepcopy(arlo.messages.REGISTER_SET))
-        register_set['AudioMicEnable'] = enabled
+        set_values = {
+            'AudioMicEnable': enabled
+        }
+        register_set['AudioMicEnable'] = set_values
         return self.send_message(register_set)
 
     def speaker_request(self, enabled):
         register_set = Message(copy.deepcopy(arlo.messages.REGISTER_SET))
-        register_set['AudioSpkrEnable'] = enabled
+        set_values = {
+            'AudioSpkrEnable': enabled
+        }
+        register_set['SetValues'] = set_values
         return self.send_message(register_set)
 
     def register_set(self, set_values):
@@ -88,3 +95,11 @@ class Device(ABC):
     def send_message_dict(self, message_dict):
         message = Message(message_dict)
         return self.send_message(message)
+
+    def send_epoch_bs_time(self):
+        register_set = Message(copy.deepcopy(arlo.messages.REGISTER_SET))
+        set_values = {
+            'EpochBsTime': int(time.time())
+        }
+        register_set['SetValues'] = set_values
+        return self.send_message(register_set)
