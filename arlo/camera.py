@@ -24,8 +24,8 @@ class Camera(Device):
             registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INITIAL_FLOODLIGHT))
         else:
             registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INITIAL_SUBSCRIPTION))
-        registerSet['WifiCountryCode'] = wifi_country_code
-        registerSet['VideoAntiFlickerRate'] = video_anti_flicker_rate
+        registerSet['SetValues']['WifiCountryCode'] = wifi_country_code
+        registerSet['SetValues']['VideoAntiFlickerRate'] = video_anti_flicker_rate
         self.send_message(registerSet)
 
         self.set_quality({'quality': 'subscription'})

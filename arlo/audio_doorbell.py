@@ -19,7 +19,7 @@ class AudioDoorbell(Device):
         self.send_message(registerSet)
 
         registerSet = Message(copy.deepcopy(arlo.messages.AUDIO_DOORBELL_SECOND_REGISTER_SET))
-        registerSet['WifiCountryCode'] = wifi_country_code
+        registerSet['SetValues']['WifiCountryCode'] = wifi_country_code
         self.send_message(registerSet)
 
     def arm(self, args):
