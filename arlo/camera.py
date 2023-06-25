@@ -24,15 +24,12 @@ class Camera(Device):
             registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INITIAL_FLOODLIGHT))
         else:
             registerSet = Message(copy.deepcopy(arlo.messages.REGISTER_SET_INITIAL_SUBSCRIPTION))
+            self.arm({"PIRTargetState": "Armed"})
         registerSet['SetValues']['WifiCountryCode'] = wifi_country_code
         registerSet['SetValues']['VideoAntiFlickerRate'] = video_anti_flicker_rate
         self.send_message(registerSet)
 
-        self.set_quality({'quality': 'subscription'})
-
-        # The Floodlight initial register set includes the Armed status already
-        if not self.model_number.startswith('FB1001'):
-            self.arm({"PIRTargetState": "Armed"})
+        self.set_quality({'quality': 'insane'})
 
     def pir_led(self, args):
         register_set = Message(copy.deepcopy(arlo.messages.REGISTER_SET))

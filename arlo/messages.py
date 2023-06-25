@@ -727,8 +727,13 @@ REGISTER_SET_INITIAL_ULTRA = {
         "Audio0EncodeFormat": 0,
         "Audio1EncodeFormat": 1,
         "AudioMicAGC": 0,  # automatic gain control
+        "AudioMicVolume": 4,
         "AudioMicWNS": 0,   # reduce wind noise
+        "AudioSpkrEnable": True,
+        "AudioTargetState": "Disarmed",
         "ChargeNotificationLed": 1,  # LED when charged
+        "DefaultMotionStreamTimeLimit": 28,
+        "DuskToDawnThrshVal": 26, # Dusk to Dawn Sensor setting; unclear what the range is
         "CvrModeEnabled": False,
         "EpochBsTime": 1610925182,
         "HdrControl": "auto",    # auto HDR enabled
@@ -744,9 +749,15 @@ REGISTER_SET_INITIAL_ULTRA = {
         "MaxUserStreamTimeLimit": 1800,
         "NightModeGrey": 0,  # ??
         "NightModeLightSourceAlert": 1,  # enable (1)/disable (0) spotlight at night
-        "NightVisionMode": False,  # night vision enabled
-        "SpotlightIntensityAlert": 100,  # spotlight brightness - DOESN'T WORK even in the Arlo app
-        "SpotlightModeAlert": 0,  # spotlight behavior: (0) Constant, (1) Flash, (2) Pulsate
+        "NightVisionMode": True, # night vision enabled
+        "PIRAction": "Stream+Spotlight", # turn on floodlight with motion
+        "PIRStartSensitivity": 95,
+        "PIRTargetState": "Armed",
+        "SpotlightDurationManual": 300, # floodlight duration when manually activated
+        "SpotlightIntensityAlert": 12593, # floodlight brightness when motion detected, 25700 == 100%
+        "SpotlightIntensityManual": 12593, # floodlight brightness when manually activated, 25700 == 100%
+        "SpotlightModeAlert": 0, # floodlight behavior when motion detected: (0) Constant , (1) Flash, (2) Pulsate if the same as spotlight cam (unclear if (1) Flash is supported)
+        "SpotlightModeManual": 0, # floodlight behavior when manually activated: (0) Constant, (2) Pulsate if the same as spotlight cam (unclear if (1) Flash is supported)
         "VideoAntiFlickerRate": 60,  # hz
         "VideoExposureCompensation": 0,
         "VideoFlip": False,
@@ -759,7 +770,7 @@ REGISTER_SET_INITIAL_ULTRA = {
         "VideoWindowEndY": 720,
         "VideoWindowStartX": 0,
         "VideoWindowStartY": 0,
-        "WifiCountryCode": "US",
+        "WifiCountryCode": "US"
     }
 }
 
@@ -804,11 +815,7 @@ REGISTER_SET_INITIAL_VID_DOORBELL = {
     "ID": -1,
     "SetValues": {
         "CallEnableLED": True, # LED on Call Accepted
-        "EnableCLI": False,
         "LEDPirStatus": True, # Breathe LED on Motion Detection
-        "LogCOMM": 0,
-        "LogFrequency": 2,
-        "LogLevel": 1,
         "SilentMode": False,
         "StreamingLedEnabled": True, # LED on Live Streaming & Recording
         "TradChimePlayDur": 0,
@@ -882,6 +889,40 @@ RA_PARAMS_VID_DOORBELL = {
     }
 }
 
+RA_PARAMS_VID_DOORBELL_INSANE = {
+    "Type": "raParams",
+    "ID": 2,
+    "Params": {
+        "1080sq": {
+            "minbps": 51200,
+            "maxbps": 1024000,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 768000,
+            "cbrbps": 768000
+        },
+        "1536sq": {
+            "minbps": 204800,
+            "maxbps": 2048000,
+            "minQP": 12,
+            "maxQP": 24,
+            "vbr": True,
+            "targetbps": 1792000,
+            "cbrbps": 1792000
+        },
+        "720sq": {
+            "minbps": 51200,
+            "maxbps": 614400,
+            "minQP": 24,
+            "maxQP": 38,
+            "vbr": True,
+            "targetbps": 512000,
+            "cbrbps": 512000
+        }
+    }
+}
+
 REGISTER_SET_720SQ = {
     "Type": "registerSet",
     "ID": -1,
@@ -905,7 +946,16 @@ REGISTER_SET_1536SQ = {
     "ID": -1,
     "SetValues": {
         "VideoOutputResolution": "1536sq",
-        "VideoTargetBitrate": 750,  # 750 originally
+        "VideoTargetBitrate": 750,
+    }
+}
+
+REGISTER_SET_1536SQ_INSANE = {
+    "Type": "registerSet",
+    "ID": -1,
+    "SetValues": {
+        "VideoOutputResolution": "1536sq",
+        "VideoTargetBitrate": 1500,  # 750 originally
     }
 }
 
@@ -1068,10 +1118,6 @@ AUDIO_DOORBELL_SECOND_REGISTER_SET = {
         "LEDStatus": True,
         "TraditionalChime": False,
         "SilentMode": False,
-        "LogFrequency": 2,
-        "LogCOMM": 0,
-        "LogLevel": 1,
-        "EnableCLI": False
     }
 }
 
