@@ -3,9 +3,9 @@ VideoAntiFlickerRate: 60
 NotifyOnMotionAlert: true
 NotifyOnAudioAlert: false
 NotifyOnButtonPressAlert: true
-MotionRecordingWebHookUrl: "http://192.168.1.72:11080/endpoint/@scrypted/arlo-local/public/motionDetected"
-AudioRecordingWebHookUrl: "http://192.168.1.72:11080/endpoint/@scrypted/arlo-local/public/"
-UserRecordingWebHookUrl: "http://192.168.1.72:11080/endpoint/@scrypted/arlo-local/public/"
-StatusUpdateWebHookUrl: "http://192.168.1.72:11080/endpoint/@scrypted/arlo-local/public/statusUpdated"
-RegistrationWebHookUrl: "http://192.168.1.72:11080/endpoint/@scrypted/arlo-local/public/registered"
-ButtonPressWebHookUrl: "http://192.168.1.72:11080/endpoint/@scrypted/arlo-local/public/buttonPressed"
+MotionRecordingWebHookUrl: "http://192.168.1.99:11080/endpoint/@scrypted/arlo-local/public/motionDetected"
+AudioRecordingWebHookUrl: "http://192.168.1.99:11080/endpoint/@scrypted/arlo-local/public/"
+UserRecordingWebHookUrl: "http://192.168.1.99:11080/endpoint/@scrypted/arlo-local/public/"
+StatusUpdateWebHookUrl: "http://192.168.1.99:11080/endpoint/@scrypted/arlo-local/public/statusUpdated"
+RegistrationWebHookUrl: "http://192.168.1.99:11080/endpoint/@scrypted/arlo-local/public/registered"
+ButtonPressWebHookUrl: "http://192.168.1.99:11080/endpoint/@scrypted/arlo-local/public/buttonPressed"
